@@ -10,89 +10,133 @@ En este paso configuraremos el proyecto en Android Studio con Jetpack Compose, a
 2. Selecciona la plantilla **Empty Activity** (con el logotipo de Jetpack Compose).
 3. Configura los parámetros básicos del proyecto:
    * **Name:** `Conversor de divisas`
-   * **Package name:** `es.gestal.conversordivisas`
+   * **Package name:** `es.gestal.conversordivisas` (o tu propio identificador personalizado, por ejemplo `com.tu_nombre.conversordivisas`).
    * **Language:** Kotlin
    * **Minimum SDK:** API 26 (Android 8.0 Oreo) o superior.
    * **Build configuration language:** Kotlin DSL (`build.gradle.kts`).
 
 ---
 
-## 2. Dependencias del proyecto en `app/build.gradle.kts` (Nivel Módulo `:app`)
+## 2. Dependencias y configuración en `app/build.gradle.kts` (Nivel Módulo `:app`)
 
 > [!NOTE]
 > En la vista **Android** del panel izquierdo de Android Studio verás dos archivos con el mismo nombre dentro de la sección **Gradle Scripts**:
-> * `build.gradle.kts (Project: Conversor_de_divisas)`: Configuración global a nivel raíz del proyecto.
-> * `build.gradle.kts (Module :app)`: Configuración específica del módulo de la aplicación (`app/build.gradle.kts`).
+> * `build.gradle.kts (Project: Conversor_de_divisas)`: Configuración global de plugins y repositorios a nivel raíz.
+> * `build.gradle.kts (Module :app)`: Configuración del módulo de la aplicación (`app/build.gradle.kts`).
 > 
 > Debes abrir el archivo a **nivel de módulo** (`build.gradle.kts (Module :app)`).
+
+> [!IMPORTANT]
+> **Identificador de paquete (`namespace` y `applicationId`):**
+> En este tutorial utilizamos `es.gestal.conversordivisas`, que corresponde al dominio y autoría personal de **Juan Gestal** (`gestal.es`).
+> Al crear tu propia aplicación debes indicar **tu propio espacio de nombres** en formato de dominio invertido (por ejemplo: `com.tu_nombre.conversordivisas` o `dev.tu_usuario.conversordivisas`). Ten presente que una vez que subas la aplicación a Google Play Store, el `applicationId` no se podrá volver a cambiar.
 
 Abre el archivo `app/build.gradle.kts` (Nivel Módulo `:app`) e incorpora las dependencias para la arquitectura, la capa de red y los componentes visuales:
 
 ```kotlin
+// =========================================================================================
+// 1. PLUGINS DE GRADLE
+// =========================================================================================
 plugins {
+    // Plugin principal para compilar aplicaciones Android
     alias(libs.plugins.android.application)
+    // Plugin oficial de Jetpack Compose para optimizar y transformar funciones @Composable
     alias(libs.plugins.kotlin.compose)
 }
 
+// =========================================================================================
+// 2. CONFIGURACIÓN DEL SISTEMA ANDROID
+// =========================================================================================
 android {
+    // Espacio de nombres base para la generación de la clase R y BuildConfig.
+    // Cambia 'es.gestal.conversordivisas' por tu propio paquete (ej. com.tu_nombre.conversordivisas)
     namespace = "es.gestal.conversordivisas"
+
+    // Versión del SDK de Android contra la que se compila el código fuente
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
+        // Identificador universal y único de la app en Google Play Store y en el dispositivo
         applicationId = "es.gestal.conversordivisas"
+
+        // Versión mínima de Android requerida (API 26 = Android 8.0 Oreo).
+        // Cubre más del 95% de dispositivos activos y soporta APIs modernas de red y fecha.
         minSdk = 26
+
+        // Versión del sistema operativo para la que se ha probado y optimizado el comportamiento
         targetSdk = 37
+
+        // Número entero correlativo para control interno de actualizaciones en Google Play (1, 2, 3...)
         versionCode = 1
+
+        // Cadena de texto legible de la versión mostrada a los usuarios en la ficha de la tienda
         versionName = "1.0"
 
+        // Ejecutor oficial de pruebas instrumentadas en emulador o dispositivo real
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
+            // En desarrollo se desactiva la ofuscación R8 para agilizar los tiempos de compilación
             optimization {
                 enable = false
             }
         }
     }
+
+    // Nivel de compatibilidad del bytecode de Java (Java 11)
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    // Activa el soporte nativo para compilar interfaces con Jetpack Compose
     buildFeatures {
         compose = true
     }
 }
 
+// =========================================================================================
+// 3. DEPENDENCIAS EXTERNAS
+// =========================================================================================
 dependencies {
-    // Jetpack Compose y Material 3
+    // Compose Bill of Materials (BOM): Alinea automáticamente las versiones compatibles de Compose
     implementation(platform(libs.androidx.compose.bom))
+
+    // Integración de Compose con la Activity y ciclo de vida del sistema
     implementation(libs.androidx.activity.compose)
+
+    // Componentes de diseño moderno Material Design 3 (Cards, TextFields, TopAppBar, BottomSheet)
     implementation(libs.androidx.compose.material3)
+
+    // Núcleo de dibujo, geometría y gráficos de Jetpack Compose
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
+
+    // Extensiones KTX para el núcleo de Android y tiempo de ejecución
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
-    // API oficial de Splash Screen de Android (Android 12+)
+    // API oficial de Splash Screen de Android (garantiza compatibilidad visual desde Android 12+)
     implementation("androidx.core:core-splashscreen:1.0.1")
 
-    // ViewModel para Compose
+    // ViewModel para Compose: Permite instanciar y vincular viewModels reactivos con viewModel()
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
-    // Catálogo ampliado de iconos (Star, StarOutline, Clear, Search, Sync, etc.)
+    // Catálogo ampliado de iconos de Material (Star, StarOutline, Clear, Search, Sync, SwapVert...)
     implementation("androidx.compose.material:material-icons-extended")
 
-    // Capa de red HTTP con Retrofit, Gson y Logging
+    // Capa de red HTTP con Retrofit, convertidor Gson y registrador de llamadas OkHttp
     val retrofitVersion = "2.11.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
-    // Corrutinas de Kotlin para operaciones asíncronas en segundo plano
+    // Corrutinas de Kotlin para operaciones asíncronas no bloqueantes en hilos secundarios (IO)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
 }
 ```
