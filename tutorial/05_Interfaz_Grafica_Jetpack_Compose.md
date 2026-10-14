@@ -1,4 +1,4 @@
-# 📱 Paso 04: Interfaz gráfica con Jetpack Compose y Material 3
+# 📱 Paso 05: Interfaz gráfica con Jetpack Compose y Material 3
 
 En este paso construiremos una interfaz visual moderna, limpia y ergonómica utilizando **Jetpack Compose** y los componentes de **Material 3**. 
 
@@ -1268,4 +1268,4 @@ class MainActivity : ComponentActivity() {
 * Incorporamos una pantalla de créditos que da visibilidad a la autoría de Juan Gestal y la licencia MIT.
 * El ajuste de teclado con `imePadding` evita que los campos numéricos queden ocultos durante la escritura.
 
-En el **[Paso 05](05_Animaciones_y_Microinteracciones_en_Compose.md)** profundizaremos en el diseño de movimiento en Compose: desaparición suave de tarjetas con `animateItem`, física de resortes, transiciones mecánicas de aeropuerto con `AnimatedContent` y rotación continua en GPU.
+En el **[Paso 06](06_Animaciones_y_Microinteracciones_en_Compose.md)** profundizaremos en el diseño de movimiento en Compose: desaparición suave de tarjetas con `animateItem`, física de resortes, transiciones mecánicas de aeropuerto con `AnimatedContent` y rotación continua en GPU.

@@ -490,4 +490,4 @@ Para añadir la versión en español, creamos el archivo de cadenas localizado c
 * Diseñamos e implementamos los recursos visuales del Splash Screen (`colors.xml`, `ic_splash_icon.xml`, `themes.xml`) y los vinculamos al manifiesto.
 * Establecimos el sistema de internacionalización i18n con soporte para inglés por defecto y localización al español.
 
-En el **[Paso 02](02_Capa_de_Datos_y_Red.md)** implementaremos la capa de datos completa: los modelos de información con soporte dinámico de recursos, el catálogo de divisas con banderas emoji y motor de búsqueda, la persistencia local en JSON con SharedPreferences y el cliente HTTP Retrofit con corrutinas.
+En el **[Paso 02](02_Arquitectura_y_Estructura_del_Proyecto.md)** analizaremos la arquitectura de la aplicación (MVVM + UDF) y el mapa completo de paquetes y responsabilidades antes de escribir la capa de datos.

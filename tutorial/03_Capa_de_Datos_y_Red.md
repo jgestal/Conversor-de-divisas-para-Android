@@ -1,4 +1,4 @@
-# 🌐 Paso 02: Capa de datos y red
+# 🌐 Paso 03: Capa de datos y red
 
 Con el entorno de desarrollo y los recursos visuales base preparados, construimos en este paso la **capa de datos completa** de la aplicación siguiendo los principios de la arquitectura recomendada por Google (MVVM).
 
@@ -314,4 +314,4 @@ object RetrofitClient {
 * Implementamos `PreferenciasDivisas` con serialización JSON para garantizar la preservación del orden personalizado de favoritas y modo *offline-first*.
 * Configuramos el cliente Singleton de `Retrofit` con tiempos de espera seguros y soporte nativo de corrutinas (`suspend fun`).
 
-En el **[Paso 03](03_ViewModel_y_Calculo_Reactivo.md)** conectaremos esta capa de datos con la lógica de negocio mediante el `ViewModel`, implementando el cálculo reactivo a 60 FPS, la reordenación de favoritas y la interacción de cambio de base *Tap-to-Base*.
+En el **[Paso 04](04_ViewModel_y_Calculo_Reactivo.md)** conectaremos esta capa de datos con la lógica de negocio mediante el `ViewModel`, implementando el cálculo reactivo a 60 FPS, la reordenación de favoritas y la interacción de cambio de base *Tap-to-Base*.
