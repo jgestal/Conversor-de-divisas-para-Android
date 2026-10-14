@@ -1,4 +1,4 @@
-# ✨ Paso 04: Animaciones y microinteracciones en Jetpack Compose
+# ✨ Paso 05: Animaciones y microinteracciones en Jetpack Compose
 
 Una interfaz estática que actualiza sus elementos de forma instantánea puede resultar funcional, pero a menudo produce saltos visuales bruscos que desorientan al usuario. En el diseño de experiencias de usuario (*UX/UI*) modernas, las animaciones y microinteracciones no son meros adornos visuales: cumplen un rol cognitivo esencial al proporcionar **continuidad espacial**, **confirmación de estados** y **ritmo táctil**.
 
@@ -290,4 +290,4 @@ En `PantallaSinDivisas`, el icono central incorpora un efecto de respiración co
 * Mostramos el estado sin conexión mediante la expansión lateral fluida de `AnimatedVisibility`.
 * Añadimos retroalimentación táctil de color con `animateColorAsState` y rotación GPU continua con `rememberInfiniteTransition`.
 
-En el **[Paso 05](05_Preparacion_y_Publicacion_Play_Store.md)** completaremos el proyecto configurando el almacén de claves criptográficas, firmando el App Bundle (`.aab`) y preparando el lanzamiento oficial en Google Play Store.
+En el **[Paso 06](06_Preparacion_y_Publicacion_Play_Store.md)** completaremos el proyecto configurando el almacén de claves criptográficas, firmando el App Bundle (`.aab`) y preparando el lanzamiento oficial en Google Play Store.

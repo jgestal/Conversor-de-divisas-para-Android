@@ -1,4 +1,4 @@
-# 🚀 Paso 05: Preparación y publicación en Google Play Store
+# 🚀 Paso 06: Preparación y publicación en Google Play Store
 
 En este paso final completaremos el ciclo de vida profesional de una aplicación Android: desde la generación del almacén de claves criptográficas (*Keystore*) y la compilación del binario oficial de producción (*Android App Bundle - .aab*), hasta el checklist técnico de cumplimiento de políticas para publicar en **Google Play Console**.
 

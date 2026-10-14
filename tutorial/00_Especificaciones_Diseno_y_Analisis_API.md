@@ -172,5 +172,5 @@ Para enriquecer la interfaz con el nombre completo de la moneda, su símbolo com
 * Analizamos el servicio de Frankfurter API y justificamos el modelado dinámico con `Map<String, Double>`.
 * Diseñamos un catálogo completo con banderas emoji para optimizar el rendimiento y peso del APK.
 
-En el **[Paso 01](01_Configuracion_y_Capa_de_Red.md)** configuraremos el proyecto en Android Studio, añadiremos las dependencias y crearemos la capa de datos y red con Retrofit.
+En el **[Paso 01](01_Configuracion_del_Proyecto_y_Recursos.md)** configuraremos el proyecto en Android Studio, añadiremos las dependencias en Gradle, los permisos, el Splash Screen y los catálogos multi-idioma.
 

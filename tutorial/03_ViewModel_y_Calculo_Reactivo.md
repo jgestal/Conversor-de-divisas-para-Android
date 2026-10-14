@@ -1,4 +1,4 @@
-# 🔄 Paso 02: ViewModel y cálculo reactivo en tiempo real
+# 🔄 Paso 03: ViewModel y cálculo reactivo en tiempo real
 
 En este paso conectaremos la capa de datos con la interfaz de usuario mediante un `ViewModel` reactivo. Diseñaremos un flujo de datos unidireccional (*Unidirectional Data Flow - UDF*) que gestione la divisa activa, el recálculo aritmético en memoria a 60 FPS y el funcionamiento sin conexión.
 
@@ -379,4 +379,4 @@ class ConversorViewModel(application: Application) : AndroidViewModel(applicatio
 * Implementamos la acción *Tap-to-Base* para invertir la moneda activa con un solo toque.
 * Dotamos a la aplicación de resiliencia sin conexión mediante persistencia local de tasas.
 
-En el **[Paso 03](03_Interfaz_Grafica_Jetpack_Compose.md)** desarrollaremos los componentes visuales en Jetpack Compose con Material 3.
+En el **[Paso 04](04_Interfaz_Grafica_Jetpack_Compose.md)** desarrollaremos los componentes visuales en Jetpack Compose con Material 3.
