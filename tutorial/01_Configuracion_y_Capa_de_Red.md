@@ -203,6 +203,15 @@ Para consultar la API pública de Frankfurter necesitamos declarar el permiso de
 </manifest>
 ```
 
+> [!TIP]
+> **¿Por qué aparecen textos en rojo en Android Studio al pegar este manifiesto?**
+> Es completamente normal en este punto del tutorial y se resuelve en los siguientes pasos:
+> 1. **`@style/Theme.App.Starting` en rojo:** El estilo todavía no existe porque lo crearemos en el siguiente subapartado (**3.1**) dentro de `res/values/themes.xml`. En cuanto pegues el bloque de temas, el aviso desaparecerá.
+> 2. **`.MainActivity` en rojo:** El punto inicial indica una ruta relativa basada en el `namespace` de `build.gradle.kts`. Aparece en rojo si:
+>    * No has pulsado en **Sync Now** en Android Studio tras modificar `build.gradle.kts`.
+>    * El paquete declarado en la primera línea de `MainActivity.kt` (`package ...`) no coincide exactamente con el `namespace` que indicaste en `build.gradle.kts`.
+>    * O si creaste un proyecto vacío sin Activity y aún no has creado el archivo `MainActivity.kt`.
+
 > [!NOTE]
 > **Permisos normales frente a peligrosos:** En Android, `android.permission.INTERNET` está catalogado como permiso *normal*. No requiere solicitar autorización en tiempo de ejecución al usuario mediante cuadros de diálogo, pero es estrictamente obligatorio declararlo en el manifiesto. Si se omite, cualquier petición de Retrofit arrojará un `SecurityException`.
 
