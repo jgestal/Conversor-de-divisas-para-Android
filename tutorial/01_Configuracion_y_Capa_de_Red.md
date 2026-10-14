@@ -145,9 +145,11 @@ Sincroniza el proyecto pulsando en **Sync Now** en la barra superior de Android 
 
 ---
 
-## 3. Permisos de red, tema de inicio y AndroidManifest.xml
+## 3. Permiso de acceso a internet en AndroidManifest.xml
 
-Para consultar la API pública de Frankfurter necesitamos declarar el permiso de acceso a internet en `app/src/main/AndroidManifest.xml`. Además, vinculamos la aplicación y la actividad principal con el tema de inicio `@style/Theme.App.Starting` de la API de Splash Screen:
+Para consultar la API pública de Frankfurter necesitamos declarar el permiso de acceso a internet en `app/src/main/AndroidManifest.xml`. 
+
+Al haber creado el proyecto con el asistente de Android Studio, ya dispones de un archivo `AndroidManifest.xml` funcional configurado con tu actividad principal y el tema por defecto del sistema. En este punto, **lo único que necesitamos incorporar es la línea con el permiso de internet** (`<uses-permission android:name="android.permission.INTERNET" />`) antes de la etiqueta `<application>`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -175,7 +177,7 @@ Para consultar la API pública de Frankfurter necesitamos declarar el permiso de
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.App.Starting">
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
 
         <!-- ================================================================================= -->
         <!-- 3. ACTIVIDAD PRINCIPAL (MainActivity)                                             -->
@@ -183,7 +185,7 @@ Para consultar la API pública de Frankfurter necesitamos declarar el permiso de
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.App.Starting">
+            android:theme="@android:style/Theme.Material.Light.NoActionBar">
 
             <!-- 
               Filtro de intenciones (Intent Filter):
@@ -203,46 +205,20 @@ Para consultar la API pública de Frankfurter necesitamos declarar el permiso de
 </manifest>
 ```
 
-> [!TIP]
-> **¿Por qué aparecen textos en rojo en Android Studio al pegar este manifiesto?**
-> Es completamente normal en este punto del tutorial y se resuelve en los siguientes pasos:
-> 1. **`@style/Theme.App.Starting` en rojo:** El estilo todavía no existe porque lo crearemos en el siguiente subapartado (**3.1**) dentro de `res/values/themes.xml`. En cuanto pegues el bloque de temas, el aviso desaparecerá.
-> 2. **`.MainActivity` en rojo:** El punto inicial indica una ruta relativa basada en el `namespace` de `build.gradle.kts`. Aparece en rojo si:
->    * No has pulsado en **Sync Now** en Android Studio tras modificar `build.gradle.kts`.
->    * El paquete declarado en la primera línea de `MainActivity.kt` (`package ...`) no coincide exactamente con el `namespace` que indicaste en `build.gradle.kts`.
->    * O si creaste un proyecto vacío sin Activity y aún no has creado el archivo `MainActivity.kt`.
-
 > [!NOTE]
 > **Permisos normales frente a peligrosos:** En Android, `android.permission.INTERNET` está catalogado como permiso *normal*. No requiere solicitar autorización en tiempo de ejecución al usuario mediante cuadros de diálogo, pero es estrictamente obligatorio declararlo en el manifiesto. Si se omite, cualquier petición de Retrofit arrojará un `SecurityException`.
 
-### 3.1. Configuración del tema de Splash Screen (`res/values/themes.xml`)
+---
+
+### 3.1. Recursos visuales y tema del Splash Screen
 
 A partir de Android 12, el sistema operativo muestra obligatoriamente una pantalla de presentación al arrancar en frío. La librería oficial `androidx.core:core-splashscreen` retrocompatibiliza este estándar en todas las versiones de Android desde API 21+.
 
-Abre `app/src/main/res/values/themes.xml` y define el tema de inicio junto con el tema base de Compose:
+Para evitar avisos de recursos inexistentes en el entorno de desarrollo, crearemos primero los elementos visuales base (color e icono vectorial) y después definiremos el estilo en `themes.xml`:
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Tema de inicio compatible con la API oficial de Splash Screen -->
-    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        <!-- Color de fondo oscuro de arranque -->
-        <item name="windowSplashScreenBackground">@color/splash_background</item>
-        <!-- Icono vectorial animado central -->
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_icon</item>
-        <!-- Tema principal al que transicionar tras ocultar el splash -->
-        <item name="postSplashScreenTheme">@style/Theme.ConversorDivisas</item>
-    </style>
+#### 1. Color de fondo del Splash (`res/values/colors.xml`)
 
-    <!-- Tema base de la aplicación tras finalizar el splash screen -->
-    <style name="Theme.ConversorDivisas" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-    </style>
-</resources>
-```
-
-En `app/src/main/res/values/colors.xml`, añade el color de fondo para la pantalla de arranque:
+Abre o crea el archivo `app/src/main/res/values/colors.xml` y define el color oscuro de fondo para la pantalla de arranque:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -251,13 +227,9 @@ En `app/src/main/res/values/colors.xml`, añade el color de fondo para la pantal
 </resources>
 ```
 
-> [!IMPORTANT]
-> **¿Por qué usar postSplashScreenTheme?**
-> La propiedad `postSplashScreenTheme` le indica al sistema operativo a qué estilo visual debe conmutar la ventana una vez que la primera composición de Jetpack Compose está lista para dibujarse. Esto elimina el indeseable «parpadeo blanco» (*white flash*) en los arranques en frío.
+#### 2. Icono central del Splash Screen (`ic_splash_icon.xml`)
 
-### 3.2. Icono central del Splash Screen (`ic_splash_icon.xml`)
-
-Crea el archivo `app/src/main/res/drawable/ic_splash_icon.xml` con un diseño vectorial que combina las flechas de intercambio y las monedas de Euro y Dólar:
+Crea el archivo vectorial `app/src/main/res/drawable/ic_splash_icon.xml` con un diseño que combina las flechas de intercambio y las monedas de Euro y Dólar:
 
 ```xml
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
@@ -309,6 +281,57 @@ Crea el archivo `app/src/main/res/drawable/ic_splash_icon.xml` con un diseño ve
     </group>
 </vector>
 ```
+
+#### 3. Configuración del tema en `res/values/themes.xml`
+
+Ahora que el color (`@color/splash_background`) y el icono (`@drawable/ic_splash_icon`) ya existen en el proyecto, abre `app/src/main/res/values/themes.xml` y define el tema de Splash Screen junto con el tema base de la aplicación:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema de inicio compatible con la API oficial de Splash Screen -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <!-- Color de fondo oscuro de arranque -->
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <!-- Icono vectorial animado central -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_icon</item>
+        <!-- Tema principal al que transicionar tras ocultar el splash -->
+        <item name="postSplashScreenTheme">@style/Theme.ConversorDivisas</item>
+    </style>
+
+    <!-- Tema base de la aplicación tras finalizar el splash screen -->
+    <style name="Theme.ConversorDivisas" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>
+```
+
+> [!IMPORTANT]
+> **¿Por qué usar postSplashScreenTheme?**
+> La propiedad `postSplashScreenTheme` le indica al sistema operativo a qué estilo visual debe conmutar la ventana una vez que la primera composición de Jetpack Compose está lista para dibujarse. Esto elimina el indeseable «parpadeo blanco» (*white flash*) en los arranques en frío.
+
+---
+
+### 3.2. Vinculación del Splash Screen en AndroidManifest.xml
+
+Una vez que el estilo `@style/Theme.App.Starting` está definido en `themes.xml`, **volvemos a `app/src/main/AndroidManifest.xml`** para aplicarlo como tema de arranque tanto a nivel global de la aplicación (`<application>`) como en la actividad principal (`<activity>`):
+
+```xml
+    <application
+        ...
+        android:theme="@style/Theme.App.Starting">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
+            ...
+        </activity>
+    </application>
+```
+
+Siguiendo este orden secuencial, Android Studio autocompletará `@style/Theme.App.Starting` inmediatamente sin arrojar ningún aviso en rojo, garantizando una experiencia de desarrollo limpia y sin bloqueos visuales.
 
 ---
 
