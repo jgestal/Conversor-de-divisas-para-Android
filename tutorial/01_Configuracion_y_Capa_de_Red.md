@@ -147,15 +147,26 @@ Sincroniza el proyecto pulsando en **Sync Now** en la barra superior de Android 
 
 ## 3. Permisos de red, tema de inicio y AndroidManifest.xml
 
-Para consultar la API pública de Frankfurter necesitamos declarar el permiso de acceso a internet en `app/src/main/AndroidManifest.xml`. Además, vinculamos la actividad principal con el tema de inicio `@style/Theme.App.Starting` de la API de Splash Screen:
+Para consultar la API pública de Frankfurter necesitamos declarar el permiso de acceso a internet en `app/src/main/AndroidManifest.xml`. Además, vinculamos la aplicación y la actividad principal con el tema de inicio `@style/Theme.App.Starting` de la API de Splash Screen:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Manifiesto raíz de la aplicación. 
+  Declara los permisos del sistema, metadatos globales y los componentes (Activities, Services, etc.)
+  para que el sistema operativo Android sepa cómo gestionar la aplicación.
+-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Permiso obligatorio para realizar peticiones HTTP -->
+    <!-- ===================================================================================== -->
+    <!-- 1. PERMISOS DEL SISTEMA OPERATIVO                                                     -->
+    <!-- ===================================================================================== -->
+    <!-- Permiso obligatorio para abrir sockets y realizar peticiones HTTP/HTTPS con Retrofit -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- ===================================================================================== -->
+    <!-- 2. CONFIGURACIÓN GLOBAL DE LA APLICACIÓN                                              -->
+    <!-- ===================================================================================== -->
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -165,13 +176,25 @@ Para consultar la API pública de Frankfurter necesitamos declarar el permiso de
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App.Starting">
+
+        <!-- ================================================================================= -->
+        <!-- 3. ACTIVIDAD PRINCIPAL (MainActivity)                                             -->
+        <!-- ================================================================================= -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
+
+            <!-- 
+              Filtro de intenciones (Intent Filter):
+              Le indica a Android que esta Activity es la pantalla de arranque
+              y que debe colocar su icono en el lanzador del sistema (Launcher).
+            -->
             <intent-filter>
+                <!-- Define esta actividad como el punto de entrada principal (Main) -->
                 <action android:name="android.intent.action.MAIN" />
 
+                <!-- Registra la aplicación en el escritorio y cajón de apps del teléfono -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
