@@ -222,33 +222,60 @@ A partir de Android 12, el sistema operativo muestra obligatoriamente una pantal
 
 > [!NOTE]
 > **Estructura de recursos en proyectos Compose:**
-> En los proyectos modernos creados con Jetpack Compose, los temas y paletas de color se gestionan mediante código Kotlin (`ui/theme/Color.kt` y `ui/theme/Theme.kt`). Por este motivo, Android Studio **no genera por defecto** los archivos `colors.xml`, `themes.xml` ni el directorio `res/drawable`. Los crearemos a continuación con el asistente de Android Studio en apenas unos clics.
+> En los proyectos modernos creados con Jetpack Compose, los temas y paletas de color se gestionan mediante código Kotlin (`ui/theme/Color.kt` y `ui/theme/Theme.kt`). Por este motivo, si inspeccionas el árbol de tu proyecto en Android Studio:
+> ```text
+> app/
+>  ├── manifests/
+>  │    └── AndroidManifest.xml
+>  ├── kotlin+java/
+>  │    └── es.gestal.conversordivisas/
+>  │         ├── ui.theme/
+>  │         └── MainActivity.kt
+>  └── res/
+>       ├── mipmap/ (iconos de la app)
+>       └── values/
+>            └── strings.xml
+> ```
+> Observarás que **no existen por defecto** ni `colors.xml`, ni `themes.xml`, ni la carpeta `res/drawable/`. 
+> 
+> No necesitas crear carpetas a mano en el sistema de archivos: el propio asistente gráfico de Android Studio las creará automáticamente siguiendo estos sencillos pasos.
 
 Para evitar avisos de dependencias inexistentes en el entorno de desarrollo, crearemos los archivos en orden: primero el color de fondo, luego el icono vectorial y finalmente el estilo en `themes.xml`:
 
 #### 1. Color de fondo del Splash (`res/values/colors.xml`)
 
-1. En el panel izquierdo de Android Studio (vista **Android**), despliega la carpeta **`app`** y haz clic derecho sobre la carpeta **`res`** (o sobre **`res/values`** si ya la tienes visible).
-2. Selecciona **New** > **Values Resource File**.
-3. En la ventana emergente, escribe en **File name**: `colors`.
-4. Pulsa **OK**. Android Studio creará el archivo `app/src/main/res/values/colors.xml`.
-5. Reemplaza su contenido por el siguiente código:
+1. En el panel izquierdo de Android Studio (asegúrate de tener seleccionada la vista **Android** en el desplegable superior).
+2. Despliega la carpeta **`app`** y después la carpeta **`res`**.
+3. Haz clic con el **botón derecho del ratón** sobre la carpeta **`values`** (o sobre **`res`** si `values` aún no está visible).
+4. En el menú contextual que aparece, selecciona **New** ➔ **Values Resource File**.
+5. En la ventana emergente que se abrirá:
+   * **File name:** escribe `colors` (sin `.xml`, el entorno lo añade automáticamente).
+   * Deja el resto de campos con sus valores por defecto.
+   * Haz clic en **OK**.
+6. Android Studio creará el archivo `app/src/main/res/values/colors.xml` y lo abrirá en el editor. Sustituye todo su contenido por:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Color de fondo oscuro de arranque (Dark Slate) -->
     <color name="splash_background">#0F172A</color>
 </resources>
 ```
 
 #### 2. Icono central del Splash Screen (`ic_splash_icon.xml`)
 
-1. Haz clic derecho sobre la carpeta **`res`** en el panel de proyecto.
-2. Selecciona **New** > **Android Resource File**.
-3. En el campo **File name**, escribe: `ic_splash_icon`.
-4. En el desplegable **Resource type**, selecciona: **`Drawable`** *(esto creará automáticamente el directorio `res/drawable` en el proyecto)*.
-5. Pulsa **OK**.
-6. Borra el código autogenerado y pega el diseño vectorial que combina las flechas de intercambio y las monedas de Euro y Dólar:
+> [!TIP]
+> **Generación automática del directorio `drawable`:**
+> No es necesario crear la carpeta `drawable` previamente. Al seleccionar el tipo de recurso *Drawable* en el asistente, Android Studio creará automáticamente el directorio `res/drawable/` en el disco.
+
+1. Haz clic con el **botón derecho del ratón** sobre la carpeta **`res`** en el panel de proyecto.
+2. Selecciona **New** ➔ **Android Resource File**.
+3. En el cuadro de diálogo:
+   * **File name:** escribe exactamente `ic_splash_icon`.
+   * **Resource type:** abre el menú desplegable y selecciona **`Drawable`**.
+   *(Comprobarás que el campo Directory name cambia automáticamente a `drawable`)*.
+   * Haz clic en **OK**.
+4. Se abrirá el archivo `app/src/main/res/drawable/ic_splash_icon.xml`. Borra cualquier código autogenerado y pega el diseño vectorial completo que combina las flechas de intercambio y las monedas de Euro y Dólar:
 
 ```xml
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
@@ -303,11 +330,11 @@ Para evitar avisos de dependencias inexistentes en el entorno de desarrollo, cre
 
 #### 3. Configuración del tema en `res/values/themes.xml`
 
-1. Haz clic derecho sobre la carpeta **`res`** (o sobre **`res/values`**).
-2. Selecciona **New** > **Values Resource File**.
-3. En **File name**, escribe: `themes`.
-4. Pulsa **OK**.
-5. Ahora que el color (`@color/splash_background`) y el icono (`@drawable/ic_splash_icon`) ya existen en el proyecto, define el tema de Splash Screen junto con el tema base de la aplicación:
+1. Haz clic con el **botón derecho del ratón** sobre la carpeta **`res`** (o sobre **`res/values`**).
+2. Selecciona **New** ➔ **Values Resource File**.
+3. En el campo **File name**, escribe: `themes`.
+4. Haz clic en **OK**.
+5. Ahora que el color (`@color/splash_background`) y el icono (`@drawable/ic_splash_icon`) ya existen en el proyecto, sustituye todo el contenido por la definición del tema de inicio y el tema base:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -366,6 +393,8 @@ Cuando un usuario abre la aplicación, el sistema operativo inspecciona la confi
 
 ### 4.1. Catálogo por defecto en inglés (`app/src/main/res/values/strings.xml`)
 
+Abre el archivo `app/src/main/res/values/strings.xml` (que ya fue generado por la plantilla de Android Studio) y sustituye su contenido por las cadenas completas en inglés:
+
 ```xml
 <resources>
     <string name="app_name">Currency Converter</string>
@@ -403,7 +432,17 @@ Cuando un usuario abre la aplicación, el sistema operativo inspecciona la confi
 
 ### 4.2. Localización en español (`app/src/main/res/values-es/strings.xml`)
 
-Para añadir un idioma (en este ejemplo, el español), basta con crear el directorio `res/values-es/` y proporcionar el archivo `strings.xml` con exactamente las mismas claves traducidas:
+Para añadir la versión en español, creamos el archivo de cadenas localizado con el asistente de Android Studio:
+
+1. Haz clic derecho sobre la carpeta **`res`**.
+2. Selecciona **New** ➔ **Android Resource File**.
+3. En **File name**, escribe: `strings`.
+4. En **Resource type**, selecciona: **`Values`**.
+5. En la lista de calificadores disponibles de la izquierda (**Available qualifiers**), selecciona **`Locale`** y pulsa el botón con dos flechas (**`>>`**) en el centro.
+6. En la columna de idiomas (**Language**), selecciona **`es: Spanish`** (en *Specific Region Only* deja *Any Region*).
+   *(Observa cómo Directory name cambia a `values-es`)*.
+7. Pulsa en **OK**.
+8. Android Studio creará automáticamente `app/src/main/res/values-es/strings.xml`. Pega la traducción correspondiente:
 
 ```xml
 <resources>
