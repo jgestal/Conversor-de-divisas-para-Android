@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="160dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+    <!-- Círculo contenedor con resplandor -->
+    <path
+        android:fillColor="#172554"
+        android:pathData="M 256,256 m -200,0 a 200,200 0 1,1 400,0 a 200,200 0 1,1 -400,0" />
+
+    <group
+        android:pivotX="256"
+        android:pivotY="256"
+        android:scaleX="0.82"
+        android:scaleY="0.82">
+
+        <!-- Flecha superior dorada -->
+        <path
+            android:strokeColor="#F59E0B"
+            android:strokeWidth="24"
+            android:strokeLineCap="round"
+            android:pathData="M 152,236 C 145,170 196,112 268,112 C 322,112 368,144 388,190" />
+        <path
+            android:fillColor="#F59E0B"
+            android:pathData="M 374,206 L 406,186 L 396,148 Z" />
+
+        <!-- Flecha inferior cian -->
+        <path
+            android:strokeColor="#0EA5E9"
+            android:strokeWidth="24"
+            android:strokeLineCap="round"
+            android:pathData="M 360,276 C 367,342 316,400 244,400 C 190,400 144,368 124,322" />
+        <path
+            android:fillColor="#0EA5E9"
+            android:pathData="M 138,306 L 106,326 L 116,364 Z" />
+
+        <!-- Moneda Euro (dorada) -->
+        <path
+            android:fillColor="#F59E0B"
+            android:pathData="M 196,204 m -62,0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0" />
+        <path
+            android:fillColor="#78350F"
+            android:pathData="M 212,180 C 204,174 195,173 186,177 C 174,183 168,196 169,211 C 170,225 178,235 191,237 C 199,238 207,235 214,228 L 207,219 C 202,224 196,226 191,225 C 183,224 178,216 177,206 L 210,206 L 210,198 L 177,198 C 178,192 182,186 190,184 C 196,183 202,185 206,189 Z" />
+
+        <!-- Moneda Dólar (azul cian) -->
+        <path
+            android:fillColor="#0EA5E9"
+            android:pathData="M 316,308 m -62,0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0" />
+        <path
+            android:fillColor="#082F49"
+            android:pathData="M 318,276 L 312,276 L 312,283 C 303,285 297,292 297,301 C 297,314 307,319 318,322 C 327,325 330,328 330,334 C 330,340 324,344 314,344 C 304,344 297,339 295,331 L 287,334 C 290,345 298,351 310,353 L 310,360 L 316,360 L 316,353 C 328,351 337,345 337,334 C 337,322 327,316 316,313 C 306,310 304,307 304,302 C 304,296 310,292 317,292 C 324,292 330,296 332,303 L 340,300 C 337,290 328,284 318,283 Z" />
+    </group>
+</vector>

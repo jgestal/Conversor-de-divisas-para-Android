@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">為替レート計算機</string>
+    <string name="divisa_activa">基準通貨</string>
+    <string name="sin_conexion">オフライン（保存済みレート）</string>
+    <string name="bce_sincronizado">ECB: %1$s</string>
+    <string name="favoritas_titulo">お気に入り（タップして選択）</string>
+    <string name="gestionar">管理</string>
+    <string name="gestionar_divisas_titulo">通貨の管理</string>
+    <string name="buscar_divisa_placeholder">名前またはコードで検索（例: TRY、円）...</string>
+    <string name="activa_tag">基準</string>
+    <string name="quitar_de_favoritas">お気に入りから削除</string>
+    <string name="anadir_a_favoritas">お気に入りに追加</string>
+    <string name="toca_para_activar">タップして有効化</string>
+    <string name="mover_arriba">上に移動</string>
+    <string name="mover_abajo">下に移動</string>
+    <string name="actualizar_tasas">レートを更新</string>
+    <string name="creditos_y_autor">クレジットと開発者</string>
+    <string name="creditos_titulo">為替レート計算機</string>
+    <string name="desarrollado_por">開発者: Juan Gestal</string>
+    <string name="descripcion_creditos">MITライセンスに基づくオープンソースアプリです。AndroidにおけるJetpack ComposeとREST API学習のために開発されました。</string>
+    <string name="fuente_datos_creditos">欧州中央銀行（ECB）の公式基準為替レートをオープンなFrankfurter API経由で取得しています。</string>
+    <string name="cerrar">閉じる</string>
+    <string name="sin_divisas_titulo">基準通貨が選択されていません</string>
+    <string name="sin_divisas_descripcion">旅行中の為替レート換算を開始するには、少なくとも1つの通貨を選択してください。</string>
+    <string name="seleccionar_divisas_boton">通貨を選択する</string>
+
+    <!-- Nombres de divisas -->
+    <string name="divisa_eur">ユーロ</string>
+    <string name="divisa_usd">米ドル</string>
+    <string name="divisa_gbp">英ポンド</string>
+    <string name="divisa_try">トルコリラ</string>
+    <string name="divisa_jpy">日本円</string>
+    <string name="divisa_chf">スイスフラン</string>
+    <string name="divisa_cad">カナダドル</string>
+    <string name="divisa_aud">豪ドル</string>
+    <string name="divisa_cny">中国元</string>
+    <string name="divisa_inr">インド・ルピー</string>
+    <string name="divisa_brl">ブラジル・レアル</string>
+    <string name="divisa_mxn">メキシコ・ペソ</string>
+    <string name="divisa_sek">スウェーデン・クローナ</string>
+    <string name="divisa_nok">ノルウェー・クローネ</string>
+    <string name="divisa_dkk">デンマーク・クローネ</string>
+    <string name="divisa_pln">ポーランド・ズウォティ</string>
+    <string name="divisa_czk">チェコ・コルナ</string>
+    <string name="divisa_huf">ハンガリー・フォリント</string>
+    <string name="divisa_ils">イスラエル・シェケル</string>
+    <string name="divisa_krw">韓国ウォン</string>
+    <string name="divisa_sgd">シンガポールドル</string>
+    <string name="divisa_nzd">NZドル</string>
+    <string name="divisa_thb">タイ・バーツ</string>
+    <string name="divisa_zar">南ア・ランド</string>
+    <string name="divisa_generica">国際通貨</string>
+</resources>

@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <!-- Círculo de fondo esmeralda suave -->
+    <path
+        android:fillColor="#0F766E"
+        android:pathData="M48,48m-48,0a48,48 0,1,1 96,0a48,48 0,1,1 -96,0" />
+    <!-- Cabeza -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M48,22c-7.73,0 -14,6.27 -14,14s6.27,14 14,14s14,-6.27 14,-14S55.73,22 48,22z" />
+    <!-- Torso / hombros -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M48,56c-13.33,0 -26,6.67 -26,20v4h52v-4C74,62.67 61.33,56 48,56z" />
+</vector>

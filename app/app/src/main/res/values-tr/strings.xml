@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Döviz Çevirici</string>
+    <string name="divisa_activa">Aktif para birimi</string>
+    <string name="sin_conexion">Çevrimdışı (kayıtlı kurlar)</string>
+    <string name="bce_sincronizado">AMB: %1$s</string>
+    <string name="favoritas_titulo">Favoriler (etkinleştirmek için dokunun)</string>
+    <string name="gestionar">Yönet</string>
+    <string name="gestionar_divisas_titulo">Para birimlerini yönet</string>
+    <string name="buscar_divisa_placeholder">İsim veya kod ile arayın (örn. TRY, Dolar)...</string>
+    <string name="activa_tag">AKTİF</string>
+    <string name="quitar_de_favoritas">Favorilerden kaldır</string>
+    <string name="anadir_a_favoritas">Favorilere ekle</string>
+    <string name="toca_para_activar">Etkinleştirmek için dokunun</string>
+    <string name="mover_arriba">Yukarı taşı</string>
+    <string name="mover_abajo">Aşağı taşı</string>
+    <string name="actualizar_tasas">Döviz kurlarını güncelle</string>
+    <string name="creditos_y_autor">Katkıda bulunanlar ve geliştirici</string>
+    <string name="creditos_titulo">Döviz Çevirici</string>
+    <string name="desarrollado_por">Juan Gestal tarafından geliştirilmiştir</string>
+    <string name="descripcion_creditos">MIT lisansı altında dağıtılan açık kaynaklı uygulama. Android üzerinde Jetpack Compose ve REST API öğrenimi amacıyla geliştirilmiştir.</string>
+    <string name="fuente_datos_creditos">Avrupa Merkez Bankası resmi gösterge döviz kurları açık Frankfurter API ile senkronize edilmektedir.</string>
+    <string name="cerrar">Kapat</string>
+    <string name="sin_divisas_titulo">Referans para birimi seçilmedi</string>
+    <string name="sin_divisas_descripcion">Seyahatlerinizde döviz kurlarını hesaplamaya başlamak için en az bir para birimi seçin.</string>
+    <string name="seleccionar_divisas_boton">Para birimi seç</string>
+
+    <!-- Nombres de divisas -->
+    <string name="divisa_eur">Euro</string>
+    <string name="divisa_usd">Amerikan Doları</string>
+    <string name="divisa_gbp">İngiliz Sterlini</string>
+    <string name="divisa_try">Türk Lirası</string>
+    <string name="divisa_jpy">Japon Yeni</string>
+    <string name="divisa_chf">İsviçre Frangı</string>
+    <string name="divisa_cad">Kanada Doları</string>
+    <string name="divisa_aud">Avustralya Doları</string>
+    <string name="divisa_cny">Çin Yuanı</string>
+    <string name="divisa_inr">Hindistan Rupisi</string>
+    <string name="divisa_brl">Brezilya Reali</string>
+    <string name="divisa_mxn">Meksika Pesosu</string>
+    <string name="divisa_sek">İsveç Kronu</string>
+    <string name="divisa_nok">Norveç Kronu</string>
+    <string name="divisa_dkk">Danimarka Kronu</string>
+    <string name="divisa_pln">Polonya Zlotisi</string>
+    <string name="divisa_czk">Çek Korunası</string>
+    <string name="divisa_huf">Macar Forinti</string>
+    <string name="divisa_ils">İsrail Şekeli</string>
+    <string name="divisa_krw">Güney Kore Wonu</string>
+    <string name="divisa_sgd">Singapur Doları</string>
+    <string name="divisa_nzd">Yeni Zelanda Doları</string>
+    <string name="divisa_thb">Tayland Bahtı</string>
+    <string name="divisa_zar">Güney Afrika Randı</string>
+    <string name="divisa_generica">Uluslararası para birimi</string>
+</resources>

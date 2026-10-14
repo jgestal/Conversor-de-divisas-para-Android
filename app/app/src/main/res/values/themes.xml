@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema de inicio (Splash Screen) compatible con la API oficial de Splash Screen de Android -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <!-- Color de fondo de la ventana de arranque -->
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <!-- Icono central vectorial -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_icon</item>
+        <!-- Tema principal al que transicionar tras ocultar el splash -->
+        <item name="postSplashScreenTheme">@style/Theme.ConversorDivisas</item>
+    </style>
+
+    <!-- Tema base de la aplicación tras el splash screen -->
+    <style name="Theme.ConversorDivisas" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>

@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Conversor de Moedas</string>
+    <string name="divisa_activa">Moeda ativa</string>
+    <string name="sin_conexion">Offline (taxas guardadas)</string>
+    <string name="bce_sincronizado">BCE: %1$s</string>
+    <string name="favoritas_titulo">Favoritas (toque para ativar)</string>
+    <string name="gestionar">Gerir</string>
+    <string name="gestionar_divisas_titulo">Gerir moedas</string>
+    <string name="buscar_divisa_placeholder">Pesquisar por nome ou código (ex. TRY, Dólar)...</string>
+    <string name="activa_tag">ATIVA</string>
+    <string name="quitar_de_favoritas">Remover das favoritas</string>
+    <string name="anadir_a_favoritas">Adicionar às favoritas</string>
+    <string name="toca_para_activar">Toque para ativar</string>
+    <string name="mover_arriba">Mover para cima</string>
+    <string name="mover_abajo">Mover para baixo</string>
+    <string name="actualizar_tasas">Atualizar taxas de câmbio</string>
+    <string name="creditos_y_autor">Créditos e autor</string>
+    <string name="creditos_titulo">Conversor de Moedas</string>
+    <string name="desarrollado_por">Desenvolvido por Juan Gestal</string>
+    <string name="descripcion_creditos">Aplicação de código aberto distribuída sob licença MIT. Criada para fins educativos para aprendizagem de Jetpack Compose e APIs no Android.</string>
+    <string name="fuente_datos_creditos">Taxas de câmbio oficiais de referência do Banco Central Europeu sincronizadas através da API aberta Frankfurter.</string>
+    <string name="cerrar">Fechar</string>
+    <string name="sin_divisas_titulo">Nenhuma moeda de referência</string>
+    <string name="sin_divisas_descripcion">Selecione pelo menos uma moeda para começar a converter taxas de câmbio nas suas viagens.</string>
+    <string name="seleccionar_divisas_boton">Selecionar moedas</string>
+
+    <!-- Nombres de divisas -->
+    <string name="divisa_eur">Euro</string>
+    <string name="divisa_usd">Dólar americano</string>
+    <string name="divisa_gbp">Libra esterlina</string>
+    <string name="divisa_try">Lira turca</string>
+    <string name="divisa_jpy">Iene japonês</string>
+    <string name="divisa_chf">Franco suíço</string>
+    <string name="divisa_cad">Dólar canadense</string>
+    <string name="divisa_aud">Dólar australiano</string>
+    <string name="divisa_cny">Yuan chinês</string>
+    <string name="divisa_inr">Rúpia indiana</string>
+    <string name="divisa_brl">Real brasileiro</string>
+    <string name="divisa_mxn">Peso mexicano</string>
+    <string name="divisa_sek">Coroa sueca</string>
+    <string name="divisa_nok">Coroa norueguesa</string>
+    <string name="divisa_dkk">Coroa dinamarquesa</string>
+    <string name="divisa_pln">Zloty polaco</string>
+    <string name="divisa_czk">Coroa checa</string>
+    <string name="divisa_huf">Forint húngaro</string>
+    <string name="divisa_ils">Novo shekel israelense</string>
+    <string name="divisa_krw">Won sul-coreano</string>
+    <string name="divisa_sgd">Dólar de Singapura</string>
+    <string name="divisa_nzd">Dólar da Nova Zelândia</string>
+    <string name="divisa_thb">Baht tailandês</string>
+    <string name="divisa_zar">Rand sul-africano</string>
+    <string name="divisa_generica">Moeda internacional</string>
+</resources>
