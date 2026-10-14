@@ -8,9 +8,23 @@ Implementaremos modelos desacoplados con soporte de localización multi-idioma, 
 
 ## 1. Modelos de datos
 
-Crea el archivo `app/src/main/java/es/gestal/conversordivisas/data/DivisaModelos.kt`. 
+Para organizar el proyecto según la arquitectura limpia recomendada por Google, agruparemos todas las clases de acceso a datos, persistencia y servicios web dentro de un subpaquete llamado **`data`**.
 
-Observa cómo `DivisaInfo` utiliza `@get:StringRes val nombreRes: Int` en lugar de una cadena fija, permitiendo que el nombre de cada moneda se adapte dinámicamente al idioma del usuario sin acoplar el modelo al ciclo de vida de Android:
+### Creación del paquete y archivo en Android Studio
+
+1. En el panel izquierdo de proyecto (vista **Android**), despliega `app` ➔ `kotlin+java`.
+2. Haz clic derecho sobre tu paquete principal (`es.gestal.conversordivisas`).
+3. Selecciona **New** ➔ **Package**, escribe `data` y pulsa `Enter`.
+4. Haz clic derecho sobre la nueva carpeta **`data`** ➔ **New** ➔ **Kotlin Class/File**.
+5. Escribe `DivisaModelos`, selecciona el tipo **File** y pulsa `Enter`.
+
+*(Truco rápido de Android Studio: Puedes hacer clic derecho directamente sobre `es.gestal.conversordivisas`, seleccionar **New** ➔ **Kotlin Class/File** y escribir `data.DivisaModelos`. Android Studio creará automáticamente el paquete `data` y el archivo en un solo paso).*
+
+---
+
+### Código fuente: `app/src/main/java/es/gestal/conversordivisas/data/DivisaModelos.kt`
+
+Pega el siguiente código en el archivo recién creado:
 
 ```kotlin
 package es.gestal.conversordivisas.data
@@ -41,8 +55,14 @@ data class DivisaInfo(
     @get:StringRes val nombreRes: Int,
     val simbolo: String,
     val bandera: String
-)
 ```
+
+> [!NOTE]
+> **¿Por qué `@get:StringRes val nombreRes: Int` en lugar de una cadena `String`?**
+> En Android, para resolver un identificador `R.string.*` a su texto traducido (`getString(...)`) se necesita obligatoriamente una instancia de `Context`.
+> 1. **Evitar fugas de memoria (*Memory Leaks*):** El `Context` (especialmente el de una `Activity`) está estrechamente ligado al ciclo de vida del sistema operativo (creación, rotación y destrucción). Las clases de la capa de datos (`data`) deben ser modelos de dominio puros de Kotlin; si requirieran o almacenaran un `Context`, provocarían fugas de memoria y dificultarían las pruebas unitarias.
+> 2. **Actualización reactiva al cambiar de idioma:** Si guardáramos una cadena fija `val nombre: String = "Euro"`, ese texto quedaría estático en memoria. Si el usuario cambia el idioma de su teléfono en los ajustes del sistema con la app en segundo plano, la moneda seguiría mostrándose en el idioma viejo. Al almacenar únicamente el identificador numérico del recurso (`R.string.divisa_eur`), la interfaz en Jetpack Compose resuelve la traducción en el instante exacto de pintar cada tarjeta con `stringResource(divisa.nombreRes)`, respondiendo en tiempo real a la configuración regional del dispositivo.
+> 3. **Seguridad en compilación con `@get:StringRes`:** Esta anotación de AndroidX le indica al compilador e inspector estático (Lint) que esa propiedad solo puede recibir enteros válidos pertenecientes al archivo `strings.xml` (`R.string.*`), marcando un error inmediato si por descuido se le pasara un número cualquiera.
 
 ---
 
