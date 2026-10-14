@@ -15,6 +15,12 @@ En este paso configuraremos el proyecto en Android Studio con Jetpack Compose, a
    * **Minimum SDK:** API 26 (Android 8.0 Oreo) o superior.
    * **Build configuration language:** Kotlin DSL (`build.gradle.kts`).
 
+> [!TIP]
+> **Atención al autocompletado del nombre de paquete:**
+> Al escribir «Conversor de divisas» en el campo *Name*, el asistente de Android Studio autocompleta el *Package name* añadiendo la partícula «de» (`es.gestal.conversordedivisas`). Asegúrate de borrar ese «de» para que quede exactamente `es.gestal.conversordivisas`.
+> 
+> *(Si ya creaste el proyecto con `conversordedivisas`, puedes renombrarlo fácilmente: abre `MainActivity.kt`, edita la primera línea a `package es.gestal.conversordivisas`, pulsa `Alt + Enter` o `Option + Return` sobre el aviso y selecciona **«Move to package 'es.gestal.conversordivisas'»**).*
+
 ---
 
 ## 2. Dependencias y configuración en `app/build.gradle.kts` (Nivel Módulo `:app`)
@@ -214,11 +220,19 @@ Al haber creado el proyecto con el asistente de Android Studio, ya dispones de u
 
 A partir de Android 12, el sistema operativo muestra obligatoriamente una pantalla de presentación al arrancar en frío. La librería oficial `androidx.core:core-splashscreen` retrocompatibiliza este estándar en todas las versiones de Android desde API 21+.
 
-Para evitar avisos de recursos inexistentes en el entorno de desarrollo, crearemos primero los elementos visuales base (color e icono vectorial) y después definiremos el estilo en `themes.xml`:
+> [!NOTE]
+> **Estructura de recursos en proyectos Compose:**
+> En los proyectos modernos creados con Jetpack Compose, los temas y paletas de color se gestionan mediante código Kotlin (`ui/theme/Color.kt` y `ui/theme/Theme.kt`). Por este motivo, Android Studio **no genera por defecto** los archivos `colors.xml`, `themes.xml` ni el directorio `res/drawable`. Los crearemos a continuación con el asistente de Android Studio en apenas unos clics.
+
+Para evitar avisos de dependencias inexistentes en el entorno de desarrollo, crearemos los archivos en orden: primero el color de fondo, luego el icono vectorial y finalmente el estilo en `themes.xml`:
 
 #### 1. Color de fondo del Splash (`res/values/colors.xml`)
 
-Abre o crea el archivo `app/src/main/res/values/colors.xml` y define el color oscuro de fondo para la pantalla de arranque:
+1. En el panel izquierdo de Android Studio (vista **Android**), despliega la carpeta **`app`** y haz clic derecho sobre la carpeta **`res`** (o sobre **`res/values`** si ya la tienes visible).
+2. Selecciona **New** > **Values Resource File**.
+3. En la ventana emergente, escribe en **File name**: `colors`.
+4. Pulsa **OK**. Android Studio creará el archivo `app/src/main/res/values/colors.xml`.
+5. Reemplaza su contenido por el siguiente código:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -229,7 +243,12 @@ Abre o crea el archivo `app/src/main/res/values/colors.xml` y define el color os
 
 #### 2. Icono central del Splash Screen (`ic_splash_icon.xml`)
 
-Crea el archivo vectorial `app/src/main/res/drawable/ic_splash_icon.xml` con un diseño que combina las flechas de intercambio y las monedas de Euro y Dólar:
+1. Haz clic derecho sobre la carpeta **`res`** en el panel de proyecto.
+2. Selecciona **New** > **Android Resource File**.
+3. En el campo **File name**, escribe: `ic_splash_icon`.
+4. En el desplegable **Resource type**, selecciona: **`Drawable`** *(esto creará automáticamente el directorio `res/drawable` en el proyecto)*.
+5. Pulsa **OK**.
+6. Borra el código autogenerado y pega el diseño vectorial que combina las flechas de intercambio y las monedas de Euro y Dólar:
 
 ```xml
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
@@ -284,7 +303,11 @@ Crea el archivo vectorial `app/src/main/res/drawable/ic_splash_icon.xml` con un 
 
 #### 3. Configuración del tema en `res/values/themes.xml`
 
-Ahora que el color (`@color/splash_background`) y el icono (`@drawable/ic_splash_icon`) ya existen en el proyecto, abre `app/src/main/res/values/themes.xml` y define el tema de Splash Screen junto con el tema base de la aplicación:
+1. Haz clic derecho sobre la carpeta **`res`** (o sobre **`res/values`**).
+2. Selecciona **New** > **Values Resource File**.
+3. En **File name**, escribe: `themes`.
+4. Pulsa **OK**.
+5. Ahora que el color (`@color/splash_background`) y el icono (`@drawable/ic_splash_icon`) ya existen en el proyecto, define el tema de Splash Screen junto con el tema base de la aplicación:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
