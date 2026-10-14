@@ -17,9 +17,16 @@ En este paso configuraremos el proyecto en Android Studio con Jetpack Compose, a
 
 ---
 
-## 2. Dependencias del proyecto
+## 2. Dependencias del proyecto en `app/build.gradle.kts` (Nivel Módulo `:app`)
 
-Abre el archivo `app/build.gradle.kts` e incorpora las dependencias para la arquitectura, la capa de red y los componentes visuales:
+> [!NOTE]
+> En la vista **Android** del panel izquierdo de Android Studio verás dos archivos con el mismo nombre dentro de la sección **Gradle Scripts**:
+> * `build.gradle.kts (Project: Conversor_de_divisas)`: Configuración global a nivel raíz del proyecto.
+> * `build.gradle.kts (Module :app)`: Configuración específica del módulo de la aplicación (`app/build.gradle.kts`).
+> 
+> Debes abrir el archivo a **nivel de módulo** (`build.gradle.kts (Module :app)`).
+
+Abre el archivo `app/build.gradle.kts` (Nivel Módulo `:app`) e incorpora las dependencias para la arquitectura, la capa de red y los componentes visuales:
 
 ```kotlin
 plugins {
