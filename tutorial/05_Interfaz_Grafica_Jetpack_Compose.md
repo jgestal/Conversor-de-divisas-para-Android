@@ -8,7 +8,11 @@ Estructuraremos la pantalla en componentes desacoplados, implementaremos la inte
 
 ## 1. Paleta de colores y tema visual
 
-Definimos una paleta cromática basada en tonos verde esmeralda y menta que evocan el ámbito financiero y de viajes.
+La identidad visual del proyecto se extrae directamente de la geometría y acabados del icono corporativo (`app_icon.svg`):
+* **Azul Marino Profundo (`#06294A`)**: Color protagonista del icono, empleado como primario en modo claro, fondo de tarjetas en modo oscuro y color de la tipografía principal (`onSurface`).
+* **Azul Marino Noche (`#03172B`)** y **Superficie (`#0B3B66`)**: Garantizan un modo oscuro inmersivo, elegante y con contraste AAA.
+* **Oro Moneda (`#E0B01B`)** y **Oro Brillante (`#F59E0B`)**: Tono áureo de la moneda Euro, empleado como secundario y acento dinámico de acción.
+* **Plata Moneda (`#C4C0B4`)** y **Gris Icono (`#D8D8D8`)**: Acabados metálicos de soporte para la moneda Dólar y divisores suaves.
 
 ### Color.kt (`app/src/main/java/es/gestal/conversordivisas/ui/theme/Color.kt`)
 ```kotlin
@@ -16,13 +20,21 @@ package es.gestal.conversordivisas.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val EsmeraldaPrimario = Color(0xFF0F766E)
-val EsmeraldaSecundario = Color(0xFF14B8A6)
-val EsmeraldaContenedor = Color(0xFFCCFBF1)
-val EsmeraldaFondo = Color(0xFFF0FDFA)
-val TextoOscuro = Color(0xFF134E4A)
-val TextoSecundario = Color(0xFF64748B)
-val BordeSuave = Color(0xFFE2E8F0)
+// Paleta corporativa inspirada en el icono oficial del Conversor de Divisas
+val AzulMarinoProfundo = Color(0xFF06294A) // Color oscuro base del icono
+val AzulMarinoNoche = Color(0xFF03172B)    // Fondo nocturno ultra oscuro para modo noche
+val AzulMarinoSuperficie = Color(0xFF0B3B66) // Superficie y tarjetas para modo oscuro
+val AzulMarinoContenedor = Color(0xFFE8EEF5) // Contenedor suave con matiz azul
+val AzulMarinoFondo = Color(0xFFF8FAFC)      // Fondo limpio y luminoso en modo claro
+
+val OroMoneda = Color(0xFFE0B01B)           // Dorado oficial de la moneda Euro del icono
+val OroMonedaBrillante = Color(0xFFF59E0B)  // Variante luminosa para acentos y modo oscuro
+val PlataMoneda = Color(0xFFC4C0B4)         // Tono metálico plateado de la moneda Dólar
+val GrisIcono = Color(0xFFD8D8D8)           // Gris diagonal del icono
+
+val TextoOscuro = Color(0xFF06294A)         // Tipografía principal en azul marino
+val TextoSecundario = Color(0xFF64748B)     // Subtítulos y textos de soporte
+val BordeSuave = Color(0xFFCBD5E1)          // Separadores y bordes sutiles
 ```
 
 ### Theme.kt (`app/src/main/java/es/gestal/conversordivisas/ui/theme/Theme.kt`)
@@ -37,23 +49,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val EsquemaClaro = lightColorScheme(
-    primary = EsmeraldaPrimario,
-    secondary = EsmeraldaSecundario,
-    primaryContainer = EsmeraldaContenedor,
-    background = EsmeraldaFondo,
+    primary = AzulMarinoProfundo,
+    secondary = OroMoneda,
+    primaryContainer = AzulMarinoContenedor,
+    background = AzulMarinoFondo,
     surface = Color.White,
     onPrimary = Color.White,
+    onSecondary = Color.White,
+    onPrimaryContainer = AzulMarinoProfundo,
     onSurface = TextoOscuro
 )
 
 private val EsquemaOscuro = darkColorScheme(
-    primary = EsmeraldaSecundario,
-    secondary = EsmeraldaContenedor,
-    primaryContainer = EsmeraldaPrimario,
-    background = Color(0xFF042F2E),
-    surface = Color(0xFF115E59),
-    onPrimary = Color(0xFF042F2E),
-    onSurface = Color(0xFFF0FDFA)
+    primary = OroMonedaBrillante,
+    secondary = PlataMoneda,
+    primaryContainer = AzulMarinoSuperficie,
+    background = AzulMarinoNoche,
+    surface = AzulMarinoProfundo,
+    onPrimary = AzulMarinoNoche,
+    onSecondary = AzulMarinoNoche,
+    onPrimaryContainer = Color.White,
+    onSurface = Color(0xFFF1F5F9)
 )
 
 @Composable
@@ -72,26 +88,36 @@ fun ConversorTheme(
 
 ---
 
-## 2. Recurso gráfico del autor
+## 2. Recurso gráfico del autor e inserción de imágenes
 
-Para la pantalla de créditos, crea el vector drawable `app/src/main/res/drawable/ic_avatar_juan_gestal.xml`:
+Para la ventana modal de créditos y autoría, incorporamos la fotografía pixel-art oficial del autor (**Juan Gestal**). 
 
-```xml
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="96dp"
-    android:height="96dp"
-    android:viewportWidth="96"
-    android:viewportHeight="96">
-    <path
-        android:fillColor="#0F766E"
-        android:pathData="M48,48m-48,0a48,48 0,1,1 96,0a48,48 0,1,1 -96,0" />
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M48,22c-7.73,0 -14,6.27 -14,14s6.27,14 14,14s14,-6.27 14,-14S55.73,22 48,22z" />
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M48,56c-13.33,0 -26,6.67 -26,20v4h52v-4C74,62.67 61.33,56 48,56z" />
-</vector>
+### 2.1. Optimización del recurso gráfico
+Las imágenes sin procesar suelen ocupar megabytes innecesarios en el APK (la imagen original ocupaba **1.1 MB** en PNG). Para una interfaz móvil:
+1. **Redimensión al tamaño real de visualización:** Si en Compose el avatar mide `88.dp`, en una pantalla de máxima densidad (`xxxhdpi` o 4x) requerimos como máximo `88 × 4 = 352 px` (usamos un lienzo de **`384 × 384 px`** para máxima nitidez).
+2. **Formato WebP de última generación:** Al convertir la imagen a WebP con calidad 90% mediante la herramienta `cwebp`, reducimos el peso a tan solo **21 KB** (una reducción del **98%** sin pérdida visual perceptible).
+3. **Ubicación en el proyecto:**
+   * Archivo en la app: `app/src/main/res/drawable/foto_juan_gestal.webp`
+   * Fuente original del autor: `docs/assets/profile_picture.png` (PNG original 1024x1024).
+   * Copias maestras en documentación: `docs/assets/foto_juan_gestal.png` y `docs/assets/foto_juan_gestal_original.png`.
+
+### 2.2. Cómo renderizar una imagen en Jetpack Compose
+En Jetpack Compose, para cargar una imagen empaquetada en los recursos `res/drawable` se utiliza el composable `Image` junto con `painterResource(id = R.drawable...)`. 
+
+Para dotar al avatar de un aspecto pulido:
+* `Modifier.size(88.dp)`: Delimita el tamaño del contenedor visual.
+* `Modifier.clip(CircleShape)`: Recorta la imagen en forma circular perfecta.
+* `Modifier.border(2.dp, MaterialTheme.colorScheme.primary, CircleShape)`: Añade un contorno elegante con el color primario de la aplicación para resaltar la foto sobre el fondo de la ventana modal.
+
+```kotlin
+Image(
+    painter = painterResource(id = R.drawable.foto_juan_gestal),
+    contentDescription = stringResource(R.string.desarrollado_por),
+    modifier = Modifier
+        .size(88.dp)
+        .clip(CircleShape)
+        .border(2.dp, MaterialTheme.colorScheme.primary, CircleShape)
+)
 ```
 
 ---
@@ -654,6 +680,7 @@ Diálogo de autoría con foto de **Juan Gestal**, enlaces a su web personal y li
 package es.gestal.conversordivisas.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -707,13 +734,14 @@ fun DialogoCreditos(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                // Foto / Avatar de Juan Gestal
+                // Foto de perfil de Juan Gestal
                 Image(
-                    painter = painterResource(id = R.drawable.ic_avatar_juan_gestal),
+                    painter = painterResource(id = R.drawable.foto_juan_gestal),
                     contentDescription = stringResource(R.string.desarrollado_por),
                     modifier = Modifier
-                        .size(80.dp)
+                        .size(88.dp)
                         .clip(CircleShape)
+                        .border(2.dp, MaterialTheme.colorScheme.primary, CircleShape)
                 )
 
                 Text(

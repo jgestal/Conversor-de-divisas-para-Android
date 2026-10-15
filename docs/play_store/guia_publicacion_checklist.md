@@ -24,26 +24,30 @@ Todos los recursos gráficos ya han sido generados y organizados en la carpeta `
 | :--- | :---: | :---: | :--- | :---: |
 | **Icono de la aplicación en alta resolución** | PNG de 32 bits | 512 x 512 px (máx. 1 MB) | `docs/play_store/assets/app_icon_512x512.png` | ✅ Listo (desde SVG) |
 | **Gráfico de funciones (*Feature Graphic*)** | PNG | 1024 x 500 px (máx. 15 MB) | `docs/play_store/assets/feature_graphic_1024x500.png` | ✅ Listo (capturas reales) |
-| **Captura 01: Pantalla principal y favoritas** | PNG | 1080 x 2424 px | `docs/play_store/screenshots/01_pantalla_principal_hero.png` | ✅ Listo |
-| **Captura 02: Interacción Tap-to-Base** | PNG | 1080 x 2424 px | `docs/play_store/screenshots/02_tap_to_base_lira_turca.png` | ✅ Listo |
-| **Captura 03: Selector modal y buscador** | PNG | 1080 x 2424 px | `docs/play_store/screenshots/03_modal_bottom_sheet_gestion.png` | ✅ Listo |
-| **Captura 04: Diálogo de créditos y autoría** | PNG | 1080 x 2424 px | `docs/play_store/screenshots/04_dialogo_creditos_juan_gestal.png` | ✅ Listo |
+| **Captura 01: Pantalla principal y favoritas** | PNG | 1080 x 2424 px | `docs/play_store/screenshots/01_pantalla_principal_hero.png` | ✅ Listo (ES) |
+| **Captura 02: Interacción Tap-to-Base** | PNG | 1080 x 2424 px | `docs/play_store/screenshots/02_tap_to_base_lira_turca.png` | ✅ Listo (ES) |
+| **Captura 03: Selector modal y buscador** | PNG | 1080 x 2424 px | `docs/play_store/screenshots/03_modal_bottom_sheet_gestion.png` | ✅ Listo (ES) |
+| **Captura 04: Diálogo de créditos y autoría** | PNG | 1080 x 2424 px | `docs/play_store/screenshots/04_dialogo_creditos_juan_gestal.png` | ✅ Listo (ES) |
+| **Capturas localizadas en inglés (Pack internacional)** | 4 x PNG | 1080 x 2424 px | `docs/play_store/screenshots/en/` | ✅ Listo (EN) |
 | **Icono vectorial maestro para marketing** | SVG escalable | Vectorial 512x512 | `docs/play_store/assets/app_icon.svg` | ✅ Listo |
 
 ---
 
 ## 3. Configuración de la ficha de Play Store
 
-En la consola de Google Play, navega a **Crecimiento** ➔ **Presencia en Google Play Store** ➔ **Ficha de Play Store principal**:
+En la consola de Google Play ([play.google.com/console](https://play.google.com/console)), navega a:
+**Crecimiento** ➔ **Presencia en Google Play Store** ➔ **Ficha de Play Store principal** (`.../key-store-listing`):
 
 1. **Detalles de la aplicación:**
    - **Nombre de la aplicación:** `Conversor de divisas y viaje` (Copiar de `ficha_play_store.md`).
    - **Descripción breve:** `Conversor de monedas rápido, sin conexión y con tipos de cambio oficiales del BCE.`
    - **Descripción completa:** Pegar el texto formateado de `ficha_play_store.md`.
-2. **Traducciones adicionales:**
-   - Añadir traducciones para **Inglés**, **Francés**, **Alemán** y **Portugués** copiando las secciones preparadas en `ficha_play_store.md`.
-3. **Subida de gráficos:**
-   - Arrastra el icono de 512x512 px, el gráfico de funciones de 1024x500 px y las 4 capturas de pantalla de móvil.
+2. **Traducciones adicionales y capturas en inglés:**
+   - Pulsa en **Gestionar traducciones** ➔ **Añadir traducción** ➔ **Inglés (Estados Unidos)**.
+   - Pega los textos en inglés de `ficha_play_store.md` y sube las capturas internacionales de `docs/play_store/screenshots/en/`.
+   - Opcionalmente añade Francés, Alemán y Portugués.
+3. **Subida de gráficos en la ficha principal:**
+   - Arrastra el icono `app_icon_512x512.png`, el gráfico de funciones `feature_graphic_1024x500.png` y las 4 capturas en español de `docs/play_store/screenshots/`.
 
 ---
 

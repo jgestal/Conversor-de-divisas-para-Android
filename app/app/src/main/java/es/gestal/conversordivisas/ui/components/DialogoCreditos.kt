@@ -1,6 +1,7 @@
 package es.gestal.conversordivisas.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -54,13 +55,14 @@ fun DialogoCreditos(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                // Foto / Avatar de Juan Gestal
+                // Foto de perfil de Juan Gestal
                 Image(
-                    painter = painterResource(id = R.drawable.ic_avatar_juan_gestal),
+                    painter = painterResource(id = R.drawable.foto_juan_gestal),
                     contentDescription = stringResource(R.string.desarrollado_por),
                     modifier = Modifier
-                        .size(80.dp)
+                        .size(88.dp)
                         .clip(CircleShape)
+                        .border(2.dp, MaterialTheme.colorScheme.primary, CircleShape)
                 )
 
                 Text(

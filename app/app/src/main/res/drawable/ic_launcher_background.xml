@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
     android:width="108dp"
     android:height="108dp"
-    android:viewportWidth="108"
-    android:viewportHeight="108">
-    <path android:pathData="M0,0h108v108h-108z">
-        <aapt:attr name="android:fillColor">
-            <gradient
-                android:startX="0"
-                android:startY="0"
-                android:endX="108"
-                android:endY="108"
-                android:type="linear">
-                <item android:color="#1E3A8A" android:offset="0.0" />
-                <item android:color="#1E293B" android:offset="0.5" />
-                <item android:color="#0F172A" android:offset="1.0" />
-            </gradient>
-        </aapt:attr>
-    </path>
+    android:viewportWidth="1024"
+    android:viewportHeight="1024">
+
+    <!-- Fondo base azul marino corporativo del icono -->
+    <path
+        android:fillColor="#06294A"
+        android:pathData="M 0,0 L 1024,0 L 1024,1024 L 0,1024 Z" />
+
+    <!-- Mitad diagonal gris claro girada 45 grados (cubre completamente la mitad inferior derecha) -->
+    <group
+        android:pivotX="858.78"
+        android:pivotY="1036.22"
+        android:rotation="45">
+        <path
+            android:fillColor="#D8D8D8"
+            android:strokeColor="#979797"
+            android:strokeWidth="1"
+            android:pathData="M 243.78,121.22 h 1230 v 1830 h -1230 Z" />
+    </group>
+
+    <!-- Peldaños de transición geométrica -->
+    <path
+        android:fillColor="#D8D8D8"
+        android:pathData="M 388.24,582.04 h 54.40 v 54.40 h -54.40 Z" />
+    <path
+        android:fillColor="#06294A"
+        android:pathData="M 581.36,388.24 h 54.40 v 54.40 h -54.40 Z" />
 </vector>

@@ -8,23 +8,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val EsquemaClaro = lightColorScheme(
-    primary = EsmeraldaPrimario,
-    secondary = EsmeraldaSecundario,
-    primaryContainer = EsmeraldaContenedor,
-    background = EsmeraldaFondo,
+    primary = AzulMarinoProfundo,
+    secondary = OroMoneda,
+    primaryContainer = AzulMarinoContenedor,
+    background = AzulMarinoFondo,
     surface = Color.White,
     onPrimary = Color.White,
+    onSecondary = Color.White,
+    onPrimaryContainer = AzulMarinoProfundo,
     onSurface = TextoOscuro
 )
 
 private val EsquemaOscuro = darkColorScheme(
-    primary = EsmeraldaSecundario,
-    secondary = EsmeraldaContenedor,
-    primaryContainer = EsmeraldaPrimario,
-    background = Color(0xFF042F2E),
-    surface = Color(0xFF115E59),
-    onPrimary = Color(0xFF042F2E),
-    onSurface = Color(0xFFF0FDFA)
+    primary = OroMonedaBrillante,
+    secondary = PlataMoneda,
+    primaryContainer = AzulMarinoSuperficie,
+    background = AzulMarinoNoche,
+    surface = AzulMarinoProfundo,
+    onPrimary = AzulMarinoNoche,
+    onSecondary = AzulMarinoNoche,
+    onPrimaryContainer = Color.White,
+    onSurface = Color(0xFFF1F5F9)
 )
 
 @Composable

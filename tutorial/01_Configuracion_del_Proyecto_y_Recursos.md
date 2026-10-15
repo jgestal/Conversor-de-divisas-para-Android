@@ -257,16 +257,18 @@ Para evitar avisos de dependencias inexistentes en el entorno de desarrollo, cre
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Color de fondo oscuro de arranque (Dark Slate) -->
-    <color name="splash_background">#0F172A</color>
+    <!-- Color de fondo azul marino corporativo de arranque -->
+    <color name="splash_background">#06294A</color>
 </resources>
 ```
 
 #### 2. Icono central del Splash Screen (`ic_splash_icon.xml`)
 
 > [!TIP]
-> **Generación automática del directorio `drawable`:**
-> No es necesario crear la carpeta `drawable` previamente. Al seleccionar el tipo de recurso *Drawable* en el asistente, Android Studio creará automáticamente el directorio `res/drawable/` en el disco.
+> **Generación automática del directorio `drawable` y ubicación de recursos:**
+> * Los recursos fuente vectoriales maestros se encuentran organizados en la carpeta `docs/assets/` (`docs/assets/icon-1024.svg` y `docs/assets/splash_icon.svg`).
+> * La fotografía de perfil del autor está disponible en `docs/assets/profile_picture.png` (original de 1024x1024) y `docs/assets/foto_juan_gestal.png`.
+> * La SplashScreen API de Android 12+ requiere un lienzo de **288 × 288 dp** con una **zona segura circular de 192 dp** en el centro.
 
 1. Haz clic con el **botón derecho del ratón** sobre la carpeta **`res`** en el panel de proyecto.
 2. Selecciona **New** ➔ **Android Resource File**.
@@ -275,56 +277,94 @@ Para evitar avisos de dependencias inexistentes en el entorno de desarrollo, cre
    * **Resource type:** abre el menú desplegable y selecciona **`Drawable`**.
    *(Comprobarás que el campo Directory name cambia automáticamente a `drawable`)*.
    * Haz clic en **OK**.
-4. Se abrirá el archivo `app/src/main/res/drawable/ic_splash_icon.xml`. Borra cualquier código autogenerado y pega el diseño vectorial completo que combina las flechas de intercambio y las monedas de Euro y Dólar:
+4. Se abrirá el archivo `app/src/main/res/drawable/ic_splash_icon.xml`. Borra cualquier código autogenerado y pega el diseño vectorial oficial centrado con la geometría corporativa en azul marino y las monedas de Euro y Dólar:
 
 ```xml
+<?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="160dp"
-    android:height="160dp"
-    android:viewportWidth="512"
-    android:viewportHeight="512">
+    android:width="288dp"
+    android:height="288dp"
+    android:viewportWidth="1024"
+    android:viewportHeight="1024">
 
-    <!-- Círculo contenedor con resplandor -->
-    <path
-        android:fillColor="#172554"
-        android:pathData="M 256,256 m -200,0 a 200,200 0 1,1 400,0 a 200,200 0 1,1 -400,0" />
+    <!-- Recorte circular oficial de la SplashScreen API (diámetro 192dp en lienzo de 288dp) -->
+    <group>
+        <clip-path android:pathData="M 512,170.7 A 341.3,341.3 0 1,0 512,853.3 A 341.3,341.3 0 1,0 512,170.7 Z" />
 
-    <group
-        android:pivotX="256"
-        android:pivotY="256"
-        android:scaleX="0.82"
-        android:scaleY="0.82">
+        <!-- Fondo azul marino base -->
+        <path
+            android:fillColor="#06294A"
+            android:pathData="M 0,0 L 1024,0 L 1024,1024 L 0,1024 Z" />
 
-        <!-- Flecha superior dorada -->
-        <path
-            android:strokeColor="#F59E0B"
-            android:strokeWidth="24"
-            android:strokeLineCap="round"
-            android:pathData="M 152,236 C 145,170 196,112 268,112 C 322,112 368,144 388,190" />
-        <path
-            android:fillColor="#F59E0B"
-            android:pathData="M 374,206 L 406,186 L 396,148 Z" />
+        <!-- Diagonal gris claro girada 45 grados -->
+        <group
+            android:pivotX="858.78"
+            android:pivotY="1036.22"
+            android:rotation="45">
+            <path
+                android:fillColor="#D8D8D8"
+                android:strokeColor="#979797"
+                android:strokeWidth="1"
+                android:pathData="M 243.78,121.22 h 1230 v 1830 h -1230 Z" />
+        </group>
 
-        <!-- Flecha inferior cian -->
+        <!-- Peldaños de la geometría diagonal -->
         <path
-            android:strokeColor="#0EA5E9"
-            android:strokeWidth="24"
-            android:strokeLineCap="round"
-            android:pathData="M 360,276 C 367,342 316,400 244,400 C 190,400 144,368 124,322" />
+            android:fillColor="#D8D8D8"
+            android:pathData="M 388.24,582.04 h 54.40 v 54.40 h -54.40 Z" />
         <path
-            android:fillColor="#0EA5E9"
-            android:pathData="M 138,306 L 106,326 L 116,364 Z" />
+            android:fillColor="#06294A"
+            android:pathData="M 581.36,388.24 h 54.40 v 54.40 h -54.40 Z" />
 
-        <!-- Moneda Euro -->
-        <path
-            android:fillColor="#F59E0B"
-            android:pathData="M 196,204 m -62,0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0" />
+        <!-- Monedas escaladas y centradas en la zona segura -->
+        <group
+            android:pivotX="512"
+            android:pivotY="512"
+            android:scaleX="0.68"
+            android:scaleY="0.68">
 
-        <!-- Moneda Dólar -->
-        <path
-            android:fillColor="#0EA5E9"
-            android:pathData="M 316,308 m -62,0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0" />
+            <!-- Moneda Euro (Oro) -->
+            <path
+                android:fillColor="#E0B01B"
+                android:strokeColor="#979797"
+                android:strokeWidth="1"
+                android:pathData="M 305,140.5 A 217.5,217.5 0 1,0 305,575.5 A 217.5,217.5 0 1,0 305,140.5 Z" />
+            <path
+                android:fillColor="#E0B01B"
+                android:pathData="M 305,162 A 196,196 0 1,0 305,554 A 196,196 0 1,0 305,162 Z" />
+            <path
+                android:fillColor="#00000000"
+                android:strokeColor="#06294A"
+                android:strokeWidth="4"
+                android:pathData="M 305,164 A 194,194 0 1,0 305,552 A 194,194 0 1,0 305,164 Z" />
+            <path
+                android:fillColor="#06294A"
+                android:pathData="M246.8359375 374.34375Q246.3671875 368.484375 246.3671875 362.0390625Q246.3671875 356.4140625 246.71875 351.0234375H212.96875L217.890625 327.46875H250.0Q254.921875 306.4921875 266.7578125 292.3125Q284.453125 270.984375 311.875 270.984375Q348.4375 270.984375 365.4296875 299.578125Q374.8046875 315.6328125 375.5078125 331.8046875H345.15625Q342.2265625 319.3828125 337.5390625 313.0546875Q329.3359375 301.8046875 313.046875 301.8046875Q296.5234375 301.8046875 286.9140625 317.7421875Q284.3359375 322.078125 282.4609375 327.46875H328.984375L324.0625 351.0234375H277.7734375Q277.421875 356.53125 277.421875 362.625Q277.421875 368.8359375 277.7734375 374.34375H321.1328125L316.2109375 397.8984375H283.046875Q284.921875 402.46875 287.5 406.21875Q297.578125 420.6328125 313.1640625 420.6328125Q329.1015625 420.6328125 337.421875 408.2109375Q342.109375 401.53125 345.15625 388.171875H375.15625Q371.171875 416.4140625 355.0 434.109375Q338.828125 451.8046875 313.515625 451.8046875Q282.2265625 451.8046875 264.296875 427.8984375Q254.921875 415.359375 250.46875 397.8984375H212.96875L217.890625 374.34375Z" />
+
+            <!-- Moneda Dólar (Plata) -->
+            <path
+                android:fillColor="#C4C0B4"
+                android:strokeColor="#979797"
+                android:strokeWidth="1"
+                android:pathData="M 719,447.5 A 217.5,217.5 0 1,0 719,882.5 A 217.5,217.5 0 1,0 719,447.5 Z" />
+            <path
+                android:fillColor="#C4C0B4"
+                android:strokeColor="#06294A"
+                android:strokeWidth="4"
+                android:pathData="M 719,471 A 194,194 0 1,0 719,859 A 194,194 0 1,0 719,471 Z" />
+            <path
+                android:fillColor="#06294A"
+                android:pathData="M703.5625 664.5859375Q681.1796875 658.0234375 671.98046875 646.3046875Q662.78125 634.5859375 662.78125 618.0625Q662.78125 607.1640625 666.35546875 598.2578125Q669.9296875 589.3515625 676.375 582.90625Q684.6953125 574.5859375 694.890625 571.421875Q701.1015625 569.4296875 713.0546875 568.4921875V552.90625H724.1875V568.7265625Q743.2890625 570.25 754.1875 578.1015625Q773.9921875 590.640625 774.6953125 618.765625H743.875Q742.9375 608.3359375 740.359375 603.53125Q735.90625 595.2109375 724.1875 594.390625V639.0390625Q752.078125 648.6484375 761.6875 656.03125Q777.5078125 668.3359375 777.5078125 690.71875Q777.5078125 720.25 755.828125 733.609375Q742.5859375 741.8125 724.421875 743.21875V766.7734375H713.0546875V743.453125Q689.96875 740.875 678.6015625 733.375Q658.5625 719.8984375 658.9140625 687.4375H690.5546875Q692.1953125 702.203125 695.125 707.2421875Q699.6953125 715.09375 713.0546875 717.4375V667.3984375ZM724.1875 671.265625V717.0859375Q733.4453125 715.9140625 737.6640625 712.8671875Q745.046875 707.4765625 745.046875 694.234375Q745.046875 684.15625 738.1328125 678.296875Q734.03125 674.8984375 724.1875 671.265625ZM713.0546875 635.7578125V594.625Q702.859375 594.859375 697.9375 600.07421875Q693.015625 605.2890625 693.015625 614.3125Q693.015625 624.15625 700.3984375 629.8984375Q704.5 633.0625 713.0546875 635.7578125Z" />
+        </group>
     </group>
+
+    <!-- Anillo perimetral del emblema para delimitarlo con elegancia sobre el fondo azul -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#D8D8D8"
+        android:strokeAlpha="0.3"
+        android:strokeWidth="6"
+        android:pathData="M 512,170.7 A 341.3,341.3 0 1,0 512,853.3 A 341.3,341.3 0 1,0 512,170.7 Z" />
 </vector>
 ```
 
@@ -382,6 +422,118 @@ Una vez que el estilo `@style/Theme.App.Starting` está definido en `themes.xml`
 ```
 
 Siguiendo este orden secuencial, Android Studio autocompletará `@style/Theme.App.Starting` inmediatamente sin arrojar ningún aviso en rojo, garantizando una experiencia de desarrollo limpia y sin bloqueos visuales.
+
+---
+
+### 3.3. Icono adaptativo de la aplicación (Adaptive Icon) y recursos en `docs/assets/`
+
+Los archivos originales y recursos fuente maestros del proyecto se organizan en la carpeta **`docs/assets/`**:
+* `docs/assets/icon-1024.svg` / `docs/assets/app_icon.svg`: Vectorial maestro (1024 × 1024 px).
+* `docs/assets/splash_icon.svg`: Vectorial optimizado para la Splash Screen oficial (288 × 288 dp con máscara circular de 192 dp).
+* `docs/assets/profile_picture.png`: Fotografía pixel-art original de **Juan Gestal** (1024 × 1024 px).
+* `docs/assets/foto_juan_gestal.png`: Fotografía optimizada para documentación y visualizaciones.
+
+Para el icono de la aplicación en el escritorio de Android, implementamos un **icono adaptativo (*Adaptive Icon*)** compuesto por dos capas vectoriales en `res/drawable/`:
+
+#### 1. Fondo adaptativo (`app/src/main/res/drawable/ic_launcher_background.xml`):
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="1024"
+    android:viewportHeight="1024">
+
+    <!-- Fondo base azul marino corporativo del icono -->
+    <path
+        android:fillColor="#06294A"
+        android:pathData="M 0,0 L 1024,0 L 1024,1024 L 0,1024 Z" />
+
+    <!-- Mitad diagonal gris claro girada 45 grados -->
+    <group
+        android:pivotX="858.78"
+        android:pivotY="1036.22"
+        android:rotation="45">
+        <path
+            android:fillColor="#D8D8D8"
+            android:strokeColor="#979797"
+            android:strokeWidth="1"
+            android:pathData="M 243.78,121.22 h 1230 v 1830 h -1230 Z" />
+    </group>
+
+    <!-- Peldaños de transición geométrica -->
+    <path
+        android:fillColor="#D8D8D8"
+        android:pathData="M 388.24,582.04 h 54.40 v 54.40 h -54.40 Z" />
+    <path
+        android:fillColor="#06294A"
+        android:pathData="M 581.36,388.24 h 54.40 v 54.40 h -54.40 Z" />
+</vector>
+```
+
+#### 2. Primer plano adaptativo (`app/src/main/res/drawable/ic_launcher_foreground.xml`):
+Las monedas se escalan al 68% y se centran en el punto `(512, 512)` para encajar estrictamente dentro de la **zona segura circular de 72 dp** (evitando cualquier recorte en lanzadores circulares o *squircles*):
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="1024"
+    android:viewportHeight="1024">
+
+    <!-- Monedas Euro y Dólar escaladas y centradas en la zona segura circular (72dp) -->
+    <group
+        android:pivotX="512"
+        android:pivotY="512"
+        android:scaleX="0.68"
+        android:scaleY="0.68">
+
+        <!-- Moneda Euro (Oro) -->
+        <path
+            android:fillColor="#E0B01B"
+            android:strokeColor="#979797"
+            android:strokeWidth="1"
+            android:pathData="M 305,140.5 A 217.5,217.5 0 1,0 305,575.5 A 217.5,217.5 0 1,0 305,140.5 Z" />
+        <path
+            android:fillColor="#E0B01B"
+            android:pathData="M 305,162 A 196,196 0 1,0 305,554 A 196,196 0 1,0 305,162 Z" />
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#06294A"
+            android:strokeWidth="4"
+            android:pathData="M 305,164 A 194,194 0 1,0 305,552 A 194,194 0 1,0 305,164 Z" />
+        <path
+            android:fillColor="#06294A"
+            android:pathData="M246.8359375 374.34375Q246.3671875 368.484375 246.3671875 362.0390625Q246.3671875 356.4140625 246.71875 351.0234375H212.96875L217.890625 327.46875H250.0Q254.921875 306.4921875 266.7578125 292.3125Q284.453125 270.984375 311.875 270.984375Q348.4375 270.984375 365.4296875 299.578125Q374.8046875 315.6328125 375.5078125 331.8046875H345.15625Q342.2265625 319.3828125 337.5390625 313.0546875Q329.3359375 301.8046875 313.046875 301.8046875Q296.5234375 301.8046875 286.9140625 317.7421875Q284.3359375 322.078125 282.4609375 327.46875H328.984375L324.0625 351.0234375H277.7734375Q277.421875 356.53125 277.421875 362.625Q277.421875 368.8359375 277.7734375 374.34375H321.1328125L316.2109375 397.8984375H283.046875Q284.921875 402.46875 287.5 406.21875Q297.578125 420.6328125 313.1640625 420.6328125Q329.1015625 420.6328125 337.421875 408.2109375Q342.109375 401.53125 345.15625 388.171875H375.15625Q371.171875 416.4140625 355.0 434.109375Q338.828125 451.8046875 313.515625 451.8046875Q282.2265625 451.8046875 264.296875 427.8984375Q254.921875 415.359375 250.46875 397.8984375H212.96875L217.890625 374.34375Z" />
+
+        <!-- Moneda Dólar (Plata) -->
+        <path
+            android:fillColor="#C4C0B4"
+            android:strokeColor="#979797"
+            android:strokeWidth="1"
+            android:pathData="M 719,447.5 A 217.5,217.5 0 1,0 719,882.5 A 217.5,217.5 0 1,0 719,447.5 Z" />
+        <path
+            android:fillColor="#C4C0B4"
+            android:strokeColor="#06294A"
+            android:strokeWidth="4"
+            android:pathData="M 719,471 A 194,194 0 1,0 719,859 A 194,194 0 1,0 719,471 Z" />
+        <path
+            android:fillColor="#06294A"
+            android:pathData="M703.5625 664.5859375Q681.1796875 658.0234375 671.98046875 646.3046875Q662.78125 634.5859375 662.78125 618.0625Q662.78125 607.1640625 666.35546875 598.2578125Q669.9296875 589.3515625 676.375 582.90625Q684.6953125 574.5859375 694.890625 571.421875Q701.1015625 569.4296875 713.0546875 568.4921875V552.90625H724.1875V568.7265625Q743.2890625 570.25 754.1875 578.1015625Q773.9921875 590.640625 774.6953125 618.765625H743.875Q742.9375 608.3359375 740.359375 603.53125Q735.90625 595.2109375 724.1875 594.390625V639.0390625Q752.078125 648.6484375 761.6875 656.03125Q777.5078125 668.3359375 777.5078125 690.71875Q777.5078125 720.25 755.828125 733.609375Q742.5859375 741.8125 724.421875 743.21875V766.7734375H713.0546875V743.453125Q689.96875 740.875 678.6015625 733.375Q658.5625 719.8984375 658.9140625 687.4375H690.5546875Q692.1953125 702.203125 695.125 707.2421875Q699.6953125 715.09375 713.0546875 717.4375V667.3984375ZM724.1875 671.265625V717.0859375Q733.4453125 715.9140625 737.6640625 712.8671875Q745.046875 707.4765625 745.046875 694.234375Q745.046875 684.15625 738.1328125 678.296875Q734.03125 674.8984375 724.1875 671.265625ZM713.0546875 635.7578125V594.625Q702.859375 594.859375 697.9375 600.07421875Q693.015625 605.2890625 693.015625 614.3125Q693.015625 624.15625 700.3984375 629.8984375Q704.5 633.0625 713.0546875 635.7578125Z" />
+    </group>
+</vector>
+```
+
+#### 3. Declaración adaptativa en `res/mipmap-anydpi/ic_launcher.xml` e `ic_launcher_round.xml`:
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/ic_launcher_background" />
+    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+    <monochrome android:drawable="@drawable/ic_launcher_foreground" />
+</adaptive-icon>
+```
 
 ---
 

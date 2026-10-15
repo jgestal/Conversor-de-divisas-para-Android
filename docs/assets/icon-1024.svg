@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024px" height="1024px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon</title>
+    <defs>
+        <path d="M0,0 L1024,0 L1024,1024 L0,1024 L0,0 Z" id="path-1"></path>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#D7AF33" offset="0%"></stop>
+            <stop stop-color="#E0B01B" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-3" cx="305" cy="358" r="196"></circle>
+    </defs>
+    <g id="Icon" stroke="none" fill="none" xlink:href="#path-1">
+        <use fill="#06294A" fill-rule="evenodd" xlink:href="#path-1"></use>
+        <circle id="Óvalo" stroke="#979797" stroke-width="1" fill="#E0B01B" fill-rule="evenodd" cx="305" cy="358" r="217.5"></circle>
+        <g id="Óvalo-Copia-2">
+            <use fill="url(#linearGradient-2)" fill-rule="evenodd" style="mix-blend-mode: darken;" xlink:href="#path-3"></use>
+            <circle stroke="#06294A" stroke-width="4" stroke-linejoin="square" cx="305" cy="358" r="194"></circle>
+        </g>
+        <text id="€" font-family="Helvetica-Bold, Helvetica" font-size="240" font-weight="bold" fill="#06294A">
+            <tspan x="205" y="447">€</tspan>
+        </text>
+        <rect id="Rectángulo" stroke="#979797" stroke-width="1" fill="#D8D8D8" fill-rule="evenodd" transform="translate(858.7822, 1036.2178) rotate(45) translate(-858.7822, -1036.2178)" x="243.782179" y="121.217821" width="1230" height="1830"></rect>
+        <circle id="Óvalo-Copia" stroke="#979797" stroke-width="1" fill="#C4C0B4" fill-rule="evenodd" cx="719" cy="665" r="217.5"></circle>
+        <circle id="Óvalo-Copia-3" stroke="#06294A" stroke-width="4" fill="#C4C0B4" fill-rule="evenodd" cx="719" cy="665" r="194"></circle>
+        <text id="$" font-family="Helvetica-Bold, Helvetica" font-size="240" font-weight="bold" fill="#06294A">
+            <tspan x="652" y="739">$</tspan>
+        </text>
+        <rect id="Rectángulo-2" fill="#D8D8D8" fill-rule="evenodd" x="330" y="615" width="80" height="80"></rect>
+        <rect id="Rectángulo-2-Copia" fill="#06294A" fill-rule="evenodd" x="614" y="330" width="80" height="80"></rect>
+    </g>
+</svg>

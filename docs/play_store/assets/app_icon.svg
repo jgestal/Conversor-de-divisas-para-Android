@@ -1,137 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <defs>
-    <!-- Fondo con gradiente profundo azul noche / índigo -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1E3A8A" />
-      <stop offset="45%" stop-color="#172554" />
-      <stop offset="100%" stop-color="#0B132B" />
-    </linearGradient>
-
-    <!-- Resplandor central -->
-    <radialGradient id="ambientGlow" cx="50%" cy="50%" r="55%">
-      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.22" />
-      <stop offset="100%" stop-color="#1E3A8A" stop-opacity="0" />
-    </radialGradient>
-
-    <!-- Gradiente moneda Euro (Oro imperial) -->
-    <linearGradient id="goldCoin" x1="20%" y1="0%" x2="80%" y2="100%">
-      <stop offset="0%" stop-color="#FEF08A" />
-      <stop offset="40%" stop-color="#FBBF24" />
-      <stop offset="85%" stop-color="#D97706" />
-      <stop offset="100%" stop-color="#92400E" />
-    </linearGradient>
-
-    <!-- Gradiente flecha superior (Oro brillante) -->
-    <linearGradient id="goldArrow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FDE047" />
-      <stop offset="60%" stop-color="#F59E0B" />
-      <stop offset="100%" stop-color="#D97706" />
-    </linearGradient>
-
-    <!-- Gradiente moneda Dólar (Cian tecnológico / Esmeralda) -->
-    <linearGradient id="cyanCoin" x1="20%" y1="0%" x2="80%" y2="100%">
-      <stop offset="0%" stop-color="#BAE6FD" />
-      <stop offset="40%" stop-color="#38BDF8" />
-      <stop offset="85%" stop-color="#0284C7" />
-      <stop offset="100%" stop-color="#0369A1" />
-    </linearGradient>
-
-    <!-- Gradiente flecha inferior (Cian luminoso) -->
-    <linearGradient id="cyanArrow" x1="100%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" stop-color="#7DD3FC" />
-      <stop offset="60%" stop-color="#0EA5E9" />
-      <stop offset="100%" stop-color="#0284C7" />
-    </linearGradient>
-
-    <!-- Sombras profundas para efecto flotante -->
-    <filter id="shadowCoin" x="-20%" y="-20%" width="150%" height="150%">
-      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.45" />
-    </filter>
-
-    <filter id="shadowArrow" x="-20%" y="-20%" width="150%" height="150%">
-      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.35" />
-    </filter>
-  </defs>
-
-  <!-- Base Squircle -->
-  <rect width="512" height="512" rx="116" fill="url(#bgGrad)" />
-
-  <!-- Borde interior sutil de cristal -->
-  <rect x="3" y="3" width="506" height="506" rx="113" fill="none" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="3" />
-
-  <!-- Luz ambiental suave -->
-  <circle cx="256" cy="256" r="220" fill="url(#ambientGlow)" />
-
-  <!-- Anillo orbital de trayectoria punteada muy sutil -->
-  <circle cx="256" cy="256" r="160" fill="none" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="2" stroke-dasharray="8 8" />
-
-  <!-- FLECHA SUPERIOR (Sentido horario: Oro) -->
-  <g filter="url(#shadowArrow)">
-    <path d="M 152 236 C 145 170 196 112 268 112 C 322 112 368 144 388 190"
-          fill="none"
-          stroke="url(#goldArrow)"
-          stroke-width="22"
-          stroke-linecap="round" />
-    <!-- Cabeza de flecha dorada -->
-    <path d="M 374 206 L 406 186 L 396 148 Z" fill="url(#goldArrow)" stroke="url(#goldArrow)" stroke-width="4" stroke-linejoin="round" />
-  </g>
-
-  <!-- FLECHA INFERIOR (Sentido horario opuesto: Cian) -->
-  <g filter="url(#shadowArrow)">
-    <path d="M 360 276 C 367 342 316 400 244 400 C 190 400 144 368 124 322"
-          fill="none"
-          stroke="url(#cyanArrow)"
-          stroke-width="22"
-          stroke-linecap="round" />
-    <!-- Cabeza de flecha cian -->
-    <path d="M 138 306 L 106 326 L 116 364 Z" fill="url(#cyanArrow)" stroke="url(#cyanArrow)" stroke-width="4" stroke-linejoin="round" />
-  </g>
-
-  <!-- MONEDA 1: EURO (Superior Izquierda) -->
-  <g filter="url(#shadowCoin)" transform="translate(196, 204)">
-    <!-- Cuerpo de la moneda -->
-    <circle cx="0" cy="0" r="62" fill="url(#goldCoin)" stroke="#FEF08A" stroke-opacity="0.4" stroke-width="3" />
-    <circle cx="0" cy="0" r="54" fill="none" stroke="#78350F" stroke-opacity="0.25" stroke-width="2" />
-
-    <!-- Símbolo del Euro (€) vectorizado puro -->
-    <path d="M 16 -24 
-             C 8 -30 -1 -31 -10 -27 
-             C -22 -21 -28 -8 -27 7 
-             C -26 21 -18 31 -5 33 
-             C 3 34 11 31 18 24
-             L 11 15
-             C 6 20 0 22 -5 21
-             C -13 20 -18 12 -19 2
-             L 14 2 L 14 -6 L -19 -6
-             C -18 -12 -14 -18 -6 -20
-             C 0 -21 6 -19 10 -15 Z"
-          fill="#451A03" />
-    <path d="M -26 -6 L -32 -6 L -32 2 L -26 2 Z" fill="#451A03" />
-  </g>
-
-  <!-- MONEDA 2: DÓLAR (Inferior Derecha) -->
-  <g filter="url(#shadowCoin)" transform="translate(316, 308)">
-    <!-- Cuerpo de la moneda -->
-    <circle cx="0" cy="0" r="62" fill="url(#cyanCoin)" stroke="#E0F2FE" stroke-opacity="0.5" stroke-width="3" />
-    <circle cx="0" cy="0" r="54" fill="none" stroke="#0C4A6E" stroke-opacity="0.25" stroke-width="2" />
-
-    <!-- Símbolo del Dólar ($) vectorizado puro -->
-    <path d="M 2 -32 L -4 -32 L -4 -25
-             C -13 -23 -19 -16 -19 -7
-             C -19 6 -9 11 2 14
-             C 11 17 14 20 14 26
-             C 14 32 8 36 -2 36
-             C -10 36 -17 31 -19 23
-             L -27 26
-             C -24 37 -16 43 -4 45
-             L -4 52 L 2 52 L 2 45
-             C 12 43 21 37 21 26
-             C 21 14 12 8 0 5
-             C -10 2 -12 -1 -12 -6
-             C -12 -12 -6 -16 1 -16
-             C 8 -16 14 -12 16 -5
-             L 24 -8
-             C 21 -18 14 -24 2 -25 Z"
-          fill="#082F49" />
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024px" height="1024px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon</title>
+    <defs>
+        <path d="M0,0 L1024,0 L1024,1024 L0,1024 L0,0 Z" id="path-1"></path>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#D7AF33" offset="0%"></stop>
+            <stop stop-color="#E0B01B" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-3" cx="305" cy="358" r="196"></circle>
+    </defs>
+    <g id="Icon" stroke="none" fill="none" xlink:href="#path-1">
+        <use fill="#06294A" fill-rule="evenodd" xlink:href="#path-1"></use>
+        <circle id="Óvalo" stroke="#979797" stroke-width="1" fill="#E0B01B" fill-rule="evenodd" cx="305" cy="358" r="217.5"></circle>
+        <g id="Óvalo-Copia-2">
+            <use fill="url(#linearGradient-2)" fill-rule="evenodd" style="mix-blend-mode: darken;" xlink:href="#path-3"></use>
+            <circle stroke="#06294A" stroke-width="4" stroke-linejoin="square" cx="305" cy="358" r="194"></circle>
+        </g>
+        <text id="€" font-family="Helvetica-Bold, Helvetica" font-size="240" font-weight="bold" fill="#06294A">
+            <tspan x="205" y="447">€</tspan>
+        </text>
+        <rect id="Rectángulo" stroke="#979797" stroke-width="1" fill="#D8D8D8" fill-rule="evenodd" transform="translate(858.7822, 1036.2178) rotate(45) translate(-858.7822, -1036.2178)" x="243.782179" y="121.217821" width="1230" height="1830"></rect>
+        <circle id="Óvalo-Copia" stroke="#979797" stroke-width="1" fill="#C4C0B4" fill-rule="evenodd" cx="719" cy="665" r="217.5"></circle>
+        <circle id="Óvalo-Copia-3" stroke="#06294A" stroke-width="4" fill="#C4C0B4" fill-rule="evenodd" cx="719" cy="665" r="194"></circle>
+        <text id="$" font-family="Helvetica-Bold, Helvetica" font-size="240" font-weight="bold" fill="#06294A">
+            <tspan x="652" y="739">$</tspan>
+        </text>
+        <rect id="Rectángulo-2" fill="#D8D8D8" fill-rule="evenodd" x="330" y="615" width="80" height="80"></rect>
+        <rect id="Rectángulo-2-Copia" fill="#06294A" fill-rule="evenodd" x="614" y="330" width="80" height="80"></rect>
+    </g>
 </svg>

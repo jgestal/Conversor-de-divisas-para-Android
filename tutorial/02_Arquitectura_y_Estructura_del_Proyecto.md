@@ -23,8 +23,9 @@ Nuestra aplicación adopta la guía oficial de arquitectura para Android moderna
 |                   |                                                     |
 |                   v                                                     |
 |   +-------------------------------+   +-----------------------------+   |
-|   |       TarjetaDivisa.kt        |   |   ModalGestionDivisas.kt    |   |
-|   | (Fila interactiva + reorden)  |   |  (BottomSheet + buscador)   |   |
+|   |   TarjetaHeroActiva.kt        |   | BottomSheetGestionDivisas.kt|   |
+|   |   TarjetaDivisaFavorita.kt    |   | DialogoCreditos.kt          |   |
+|   |   PantallaSinDivisas.kt       |   | (Modales y estado vacío)    |   |
 |   +-------------------------------+   +-----------------------------+   |
 +-------------------------------------------------------------------------+
                                     |                ^
@@ -147,22 +148,28 @@ es.gestal.conversordivisas/
      │    └── Pantalla principal en Jetpack Compose. Ensambla el Scaffold, la cabecera,
      │        el campo de importe, la lista LazyColumn y el estado vacío.
      │
-     ├── componentes/                    [COMPONENTES VISUALES REUTILIZABLES]
-     │    ├── TarjetaDivisa.kt
-     │    │    └── Tarjeta individual de cada divisa con controles de reordenación,
-     │    │        animación de retirada y respuesta al toque.
+     ├── components/                     [COMPONENTES VISUALES REUTILIZABLES]
+     │    ├── TarjetaHeroActiva.kt
+     │    │    └── Tarjeta superior destacada con el importe editable y estado de red/BCE.
      │    │
-     │    ├── ModalGestionDivisas.kt
+     │    ├── TarjetaDivisaFavorita.kt
+     │    │    └── Tarjeta individual de cada divisa con controles de reordenación,
+     │    │        animación de retirada y respuesta al toque (Tap-to-Base).
+     │    │
+     │    ├── BottomSheetGestionDivisas.kt
      │    │    └── Hoja inferior deslizable (ModalBottomSheet) para buscar entre
      │    │        las 24 monedas del catálogo y marcar/desmarcar favoritas.
      │    │
+     │    ├── PantallaSinDivisas.kt
+     │    │    └── Estado vacío (Empty State) amigable cuando se desmarcan todas las favoritas.
+     │    │
      │    └── DialogoCreditos.kt
      │         └── Ventana modal accesible desde la cabecera con la información
-     │             de autoría de Juan Gestal, licencia MIT y créditos del BCE.
+     │             de autoría de Juan Gestal, avatar fotográfico en WebP, licencia MIT y créditos del BCE.
      │
      └── theme/                         [SISTEMA DE DISEÑO MATERIAL 3]
           ├── Color.kt
-          │    └── Definición de colores principales (tonos Esmeralda, Pizarra y Menta).
+          │    └── Definición de colores principales extraídos del icono oficial (Azul Marino Profundo, Oro, Plata y Pizarra).
           │
           ├── Theme.kt
           │    └── Configuración del MaterialTheme y adaptación a modo claro / oscuro.
